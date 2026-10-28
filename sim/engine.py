@@ -40,6 +40,12 @@ SCRYB = "Scryb Ranger"
 FANATIC = "Fanatic of Rhonas"
 BALLISTA = "Walking Ballista"
 EZURI = "Ezuri, Renegade Leader"
+SATYR = "Voyaging Satyr"
+ARBOR = "Arbor Elf"
+YAVIMAYA = "Yavimaya, Cradle of Growth"
+ANIMATE = "Animate Land"
+VTOUCH = "Verdant Touch"
+SHANG = "Shang-Chi, Master of Kung Fu"
 HASTE_SOURCES = ("Concordant Crossroads", "Thousand-Year Elixir", "Shang-Chi, Master of Kung Fu")
 GREAVES = "Lightning Greaves"
 
@@ -115,6 +121,12 @@ LINES = [
          lambda c: c["ashaya_power"] >= 4, gives_w=True, untaps_sisay=True),
     Line("Ashaya+Scryb+Fanatic", (ASHAYA, SCRYB, FANATIC), (FANATIC,), (1, 1, 0), "mana",
          lambda c: c["ashaya_power"] >= 4, untaps_sisay=True),
+    # Ashaya + Hope Tender + Shang-Chi: Hope untaps itself and Shang-Chi for {1}; Shang-Chi makes 2 that only
+    # pay for creature abilities (Hope, Sisay). Infinite Sisay activations fetch Selvala, which turns the same
+    # engine into real mana. Shang-Chi grants haste to abilities, so neither Hope nor Sisay needs to be unsick.
+    Line("Ashaya+Hope+Shang-Chi", (ASHAYA, HOPE, SHANG), (), (1, 0, 0), "mana",
+         lambda c: c["sisay"] and c["selvala_reachable"] and c["ashaya_power"] >= 3, gives_w=True,
+         untaps_sisay=True),
     Line("Ashaya+Argothian Elder", (ASHAYA, ELDER), (ELDER,), ZERO, "mana",
          lambda c: True, untaps_sisay=True),
     Line("Devoted Druid+Vizier", (DRUID, VIZIER), (DRUID,), ZERO, "mana", lambda c: True),
@@ -130,6 +142,28 @@ LINES = [
          lambda c: c["max_power"] + c["cub"] >= 5, haste_always=True, gives_w=True, untaps_sisay=True),
     Line("Emiel+Fanatic+haste", (EMIEL, FANATIC), (FANATIC,), (3, 0, 0), "mana",
          lambda c: True, haste_always=True, untaps_sisay=True),
+    # Emiel + Flash + Gaea's Cradle as a creature: blinking Flash untaps Cradle. Cradle counts itself.
+    # Animate Land / Verdant Touch need a Cradle that has been out since the turn began (or global haste);
+    # Badgermole Cub's earthbend grants haste and its static adds G when the creature-Cradle taps.
+    Line("Emiel+Flash+Cradle+Animate Land", (EMIEL, FLASH, CRADLE, ANIMATE), (), (3, 0, 0), "mana",
+         lambda c: c["creatures"] + 1 >= 4 and (not c["cradle_fresh"] or c["haste"]), untaps_sisay=True),
+    Line("Emiel+Flash+Cradle+Verdant Touch", (EMIEL, FLASH, CRADLE, VTOUCH), (), (3, 0, 0), "mana",
+         lambda c: c["creatures"] + 1 >= 4 and (not c["cradle_fresh"] or c["haste"]), untaps_sisay=True),
+    Line("Emiel+Flash+Cradle+Kamahl", (EMIEL, FLASH, CRADLE, KAMAHL), (), (3, 1, 0), "mana",
+         lambda c: c["creatures"] + 1 >= 4 and (not c["cradle_fresh"] or c["haste"]), untaps_sisay=True),
+    Line("Emiel+Flash+Cradle+Cub", (EMIEL, FLASH, CRADLE, CUB), (), (3, 0, 0), "mana",
+         lambda c: c["creatures"] + 2 >= 4, untaps_sisay=True),
+    # Emiel + Flash + a land-untapper: Flash untaps the creature, the creature untaps Cradle / Nykthos.
+    Line("Emiel+Flash+Satyr+Cradle", (EMIEL, FLASH, SATYR, CRADLE), (SATYR,), (3, 0, 0), "mana",
+         lambda c: c["creatures"] >= 4, untaps_sisay=True),
+    Line("Emiel+Flash+Arbor Elf+Cradle", (EMIEL, FLASH, ARBOR, CRADLE, YAVIMAYA), (ARBOR,), (3, 0, 0), "mana",
+         lambda c: c["creatures"] >= 4, untaps_sisay=True),
+    Line("Emiel+Flash+Hope+Cradle", (EMIEL, FLASH, HOPE, CRADLE), (HOPE,), (4, 0, 0), "mana",
+         lambda c: c["creatures"] >= 5, untaps_sisay=True),
+    Line("Emiel+Flash+Magus+Cradle", (EMIEL, FLASH, MAGUS, CRADLE), (MAGUS,), (4, 0, 0), "mana",
+         lambda c: c["creatures"] >= 5, untaps_sisay=True),
+    Line("Emiel+Flash+Satyr+Nykthos", (EMIEL, FLASH, SATYR, NYKTHOS), (SATYR,), (5, 0, 0), "mana",
+         lambda c: c["devotion"] >= 6, untaps_sisay=True),
 ]
 LINE_BY_NAME = {l.name: l for l in LINES}
 
@@ -663,6 +697,12 @@ class Game:
                 "tap_creatures": creatures if haste_now or any(
                     c.name in HASTE_SOURCES for c in entering) else cur_nonsick,
                 "line_tappers": len(line.tappers),
+                "haste": haste,
+                "sisay": self.perm(SISAY) is not None and not self.perm(SISAY).tapped,
+                "selvala_reachable": self.on_bf(SELVALA) or any(c.name == SELVALA for c in self.library),
+                "cradle_fresh": (land is not None and land.name == CRADLE)
+                or any(c.name == CRADLE for c in entering)
+                or (self.perm(CRADLE) is not None and self.perm(CRADLE).sick),
                 "cub": int(self.on_bf(CUB) or any(c.name == CUB for c in entering)),
                 "max_power": max(self.max_power(), 2, *[c.power for c in ent_creatures],
                                  lands + cur_nonland_creatures + len(ent_creatures)
@@ -889,6 +929,8 @@ class Game:
                 return self.cast(card, from_command=True, oneshots=oneshots)
             return False
         if card not in self.hand or card.is_("land"):
+            return False
+        if card.is_("instant") or card.is_("sorcery"):
             return False
         if self._castable(card, oneshots):
             return self.cast(card, oneshots=oneshots)

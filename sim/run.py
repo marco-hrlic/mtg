@@ -65,16 +65,16 @@ def report(results, turns, deck):
         k = lines[line.name]
         if k:
             mean = sum(r["win_turn"] for r in wins if r["line"] == line.name) / k
-            print(f"  {line.name:24s} {k / n:6.1%}  {k / len(wins):6.1%}  T{mean:.2f}")
+            print(f"  {line.name:34s} {k / n:6.1%}  {k / len(wins):6.1%}  T{mean:.2f}")
     print()
 
     print("Lines live on the winning turn (several can be live at once)")
-    print(f"  {'line':24s} {'live in % of wins':>18s} {'only line live':>15s}")
+    print(f"  {'line':34s} {'live in % of wins':>18s} {'only line live':>15s}")
     live = Counter(l for r in wins for l in r["available"])
     only = Counter(r["available"][0] for r in wins if len(r["available"]) == 1)
     for line in LINES:
         if live[line.name]:
-            print(f"  {line.name:24s} {live[line.name] / len(wins):18.1%} {only[line.name] / len(wins):15.1%}")
+            print(f"  {line.name:34s} {live[line.name] / len(wins):18.1%} {only[line.name] / len(wins):15.1%}")
     print()
 
     print("How missing pieces were found on the winning turn (per win)")
