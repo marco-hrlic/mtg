@@ -35,6 +35,9 @@ ELDER = "Argothian Elder"
 DRUID = "Devoted Druid"
 VIZIER = "Vizier of Remedies"
 MANTLE = "Umbral Mantle"
+QUIRION = "Quirion Ranger"
+SCRYB = "Scryb Ranger"
+FANATIC = "Fanatic of Rhonas"
 HASTE_SOURCES = ("Concordant Crossroads", "Thousand-Year Elixir", "Shang-Chi, Master of Kung Fu")
 GREAVES = "Lightning Greaves"
 
@@ -97,6 +100,19 @@ LINES = [
     Line("Ashaya+Magus+Selvala", (ASHAYA, MAGUS, SELVALA), (MAGUS, SELVALA), (2, 1, 0), "mana",
          lambda c: c["ashaya_power"] >= 4, gives_w=True, untaps_sisay=True),
     Line("Ashaya+Magus+Cub", (ASHAYA, MAGUS, CUB), (MAGUS,), (3, 0, 0), "mana", _cub_ok(2), untaps_sisay=True),
+    # Under Ashaya a Ranger is a Forest: it returns itself to hand to untap a creature, then is recast
+    # as a new object, dodging "once each turn". No tap, so the Ranger needs no haste.
+    Line("Ashaya+Quirion+Selvala", (ASHAYA, QUIRION, SELVALA), (SELVALA,), (0, 2, 0), "mana",
+         lambda c: c["ashaya_power"] >= 3, gives_w=True, untaps_sisay=True),
+    Line("Ashaya+Quirion+Fanatic", (ASHAYA, QUIRION, FANATIC), (FANATIC,), (0, 1, 0), "mana",
+         lambda c: c["ashaya_power"] >= 4, untaps_sisay=True),
+    Line("Ashaya+Quirion+Bloom", (ASHAYA, QUIRION, BLOOM), (BLOOM,), (0, 1, 0), "mana",
+         lambda c: c["w_perm"], gives_w=True, untaps_sisay=True),
+    Line("Ashaya+Quirion+Cub", (ASHAYA, QUIRION, CUB), (), (0, 1, 0), "mana", _cub_ok(2), untaps_sisay=True),
+    Line("Ashaya+Scryb+Selvala", (ASHAYA, SCRYB, SELVALA), (SELVALA,), (1, 2, 0), "mana",
+         lambda c: c["ashaya_power"] >= 4, gives_w=True, untaps_sisay=True),
+    Line("Ashaya+Scryb+Fanatic", (ASHAYA, SCRYB, FANATIC), (FANATIC,), (1, 1, 0), "mana",
+         lambda c: c["ashaya_power"] >= 4, untaps_sisay=True),
     Line("Ashaya+Argothian Elder", (ASHAYA, ELDER), (ELDER,), ZERO, "mana",
          lambda c: True, untaps_sisay=True),
     Line("Devoted Druid+Vizier", (DRUID, VIZIER), (DRUID,), ZERO, "mana", lambda c: True),
