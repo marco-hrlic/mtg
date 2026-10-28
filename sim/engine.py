@@ -39,6 +39,7 @@ QUIRION = "Quirion Ranger"
 SCRYB = "Scryb Ranger"
 FANATIC = "Fanatic of Rhonas"
 BALLISTA = "Walking Ballista"
+EZURI = "Ezuri, Renegade Leader"
 HASTE_SOURCES = ("Concordant Crossroads", "Thousand-Year Elixir", "Shang-Chi, Master of Kung Fu")
 GREAVES = "Lightning Greaves"
 
@@ -683,21 +684,29 @@ class Game:
                 best = (total, combo, uses, haste)
         return best
 
+    def _ezuri_live(self, haste):
+        # infinite Ezuri pumps: needs ~3 Elves able to attack (one per opponent); Ezuri itself counts with haste
+        elves = [p for p in self.creatures() if p.card.has("elf") and (not p.sick or haste or self.haste_active())]
+        extra = 0 if self.on_bf(EZURI) else int(haste or self.haste_active())  # Ezuri cast this turn
+        return len(elves) + extra >= 3
+
     def _outlet(self, line, uses, haste):
         if line.kind == "win":
             return True
         hand = {c.name for c in self.hand}
-        if any(k in hand or self.on_bf(k) for k in (KAMAHL, BALLISTA)):
-            return True
+        lib = {c.name for c in self.library}
         if "Finale of Devastation" in hand and "Finale of Devastation" not in uses:
             return True
-        # every remaining outlet is "tutor up Kamahl" (green) or Walking Ballista (colorless)
-        lib = {c.name for c in self.library}
-        kamahl, ballista = KAMAHL in lib, BALLISTA in lib
-        if not (kamahl or ballista):
+        # each remaining outlet is a finisher in hand/play, or a tutor that can find one
+        finishers = [KAMAHL] + ([EZURI] if self._ezuri_live(haste) else [])
+        green = [f for f in finishers if f in lib]
+        if any(f in hand or self.on_bf(f) for f in finishers) or (BALLISTA in hand or self.on_bf(BALLISTA)):
+            return True
+        anything = green + ([BALLISTA] if BALLISTA in lib else [])
+        if not anything:
             return False
         for t in ("Green Sun's Zenith", "Natural Order", "Summoner's Pact"):
-            if kamahl and t in hand and t not in uses:
+            if green and t in hand and t not in uses:
                 return True
         for t in ("Chord of Calling", "Nature's Rhythm", "Eldritch Evolution"):
             if t in hand and t not in uses:
@@ -710,8 +719,8 @@ class Game:
         if SPEAKER in hand and "hand:" + SPEAKER not in uses and len(self.hand) >= 2:
             return True
         sisay = self.perm(SISAY)
-        if kamahl and line.untaps_sisay and sisay and (not sisay.sick or haste):
-            return True  # the engine untaps Sisay (a land under Ashaya) -> fetch Kamahl
+        if green and line.untaps_sisay and sisay and (not sisay.sick or haste):
+            return True  # the engine untaps/re-buys Sisay -> fetch a legendary finisher
         return False
 
     def available_lines(self):

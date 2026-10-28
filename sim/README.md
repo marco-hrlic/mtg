@@ -13,7 +13,7 @@ python3 sim/run.py --ablate --games 3000                                   # val
 Swaps replace the card in place and every game uses a fixed seed, so baseline and variant play
 identical shuffles: the difference is the card, not luck. `--add` accepts any card in `cards.py`
 (the list plus the `CANDIDATES` block: Argothian Elder, Devoted Druid, Vizier of Remedies,
-Umbral Mantle, Elvish Reclaimer, Gilded Goose, Walking Ballista).
+Umbral Mantle, Elvish Reclaimer, Gilded Goose, Walking Ballista, Ezuri, Renegade Leader).
 
 ## What it does each turn
 1. Draw, then ask the planner whether any combo line can be finished **this turn**: every missing piece needs a route
