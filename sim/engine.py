@@ -119,10 +119,16 @@ LINES = [
     Line("Devoted Druid+Vizier", (DRUID, VIZIER), (DRUID,), ZERO, "mana", lambda c: True),
     Line("Selvala+Umbral Mantle", (SELVALA, MANTLE), (SELVALA,), (3, 1, 0), "mana",
          lambda c: c["max_power"] >= 4, gives_w=True),
-    Line("Emiel+Flash+Selvala", (EMIEL, FLASH, SELVALA, ASHAYA), (SELVALA,), (3, 1, 0), "win",
-         lambda c: c["ashaya_power"] >= 5),
-    Line("Emiel+Selvala+haste", (EMIEL, SELVALA, ASHAYA), (SELVALA,), (3, 1, 0), "win",
-         lambda c: c["ashaya_power"] >= 5, haste_always=True),
+    # Emiel lines work without Ashaya: Emiel is a 4/4 (turns on Fanatic, makes Selvala tap for 4,
+    # 5 with Badgermole Cub). Each blink can also untap/re-buy Sisay -> every legend -> Kamahl.
+    Line("Emiel+Flash+Selvala", (EMIEL, FLASH, SELVALA), (SELVALA,), (3, 1, 0), "mana",
+         lambda c: c["max_power"] + c["cub"] >= 5, gives_w=True, untaps_sisay=True),
+    Line("Emiel+Flash+Fanatic", (EMIEL, FLASH, FANATIC), (FANATIC,), (3, 0, 0), "mana",
+         lambda c: True, untaps_sisay=True),
+    Line("Emiel+Selvala+haste", (EMIEL, SELVALA), (SELVALA,), (3, 1, 0), "mana",
+         lambda c: c["max_power"] + c["cub"] >= 5, haste_always=True, gives_w=True, untaps_sisay=True),
+    Line("Emiel+Fanatic+haste", (EMIEL, FANATIC), (FANATIC,), (3, 0, 0), "mana",
+         lambda c: True, haste_always=True, untaps_sisay=True),
 ]
 LINE_BY_NAME = {l.name: l for l in LINES}
 
@@ -656,7 +662,8 @@ class Game:
                 "tap_creatures": creatures if haste_now or any(
                     c.name in HASTE_SOURCES for c in entering) else cur_nonsick,
                 "line_tappers": len(line.tappers),
-                "max_power": max(self.max_power(), 2,
+                "cub": int(self.on_bf(CUB) or any(c.name == CUB for c in entering)),
+                "max_power": max(self.max_power(), 2, *[c.power for c in ent_creatures],
                                  lands + cur_nonland_creatures + len(ent_creatures)
                                  if self.on_bf(ASHAYA) or any(c.name == ASHAYA for c in entering) else 0),
             }
