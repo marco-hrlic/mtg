@@ -183,7 +183,19 @@ CARDS = [
     C("Vitalize", "instant", "G", tags="dead"),
 ]
 
-BY_NAME = {c.name: c for c in CARDS}
+BLANK = "Blank"
+
+# Not in the list: candidates for swap testing (--add) plus the filler for --remove.
+CANDIDATES = [
+    C(BLANK, "sorcery", "99", tags="dead"),
+    C("Argothian Elder", "creature", "3G", tags="elder", power=2),
+    C("Devoted Druid", "creature", "1G", mana="G", tags="dork druid"),
+    C("Vizier of Remedies", "creature", "1W", tags="vizier", power=2),
+    C("Umbral Mantle", "artifact", "3", tags="mantle"),
+    C("Elvish Reclaimer", "creature", "G", tags="reclaimer"),
+]
+
+BY_NAME = {c.name: c for c in CARDS + CANDIDATES}
 
 COMMANDER = "Captain Sisay"
 
@@ -198,4 +210,21 @@ def load_decklist(path):
         if name not in BY_NAME:
             raise KeyError(f"unknown card in decklist: {name}")
         deck += [BY_NAME[name]] * int(n)
+    return deck
+
+
+def swap(deck, remove=(), add=()):
+    """Replace each removed card in place (keeps shuffles comparable) with the next added card or a Blank."""
+    deck = list(deck)
+    add = list(add)
+    for name in remove:
+        idx = next((i for i, c in enumerate(deck) if c.name == name), None)
+        if idx is None:
+            raise KeyError(f"not in deck: {name}")
+        new = add.pop(0) if add else BLANK
+        if new not in BY_NAME:
+            raise KeyError(f"unknown card: {new}")
+        deck[idx] = BY_NAME[new]
+    if add:
+        raise ValueError("more --add than --remove; every addition needs a cut")
     return deck

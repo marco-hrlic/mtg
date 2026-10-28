@@ -31,6 +31,10 @@ KAMAHL = "Kamahl, Fist of Krosa"
 SISAY = COMMANDER
 SPEAKER = "Formidable Speaker"
 RANGERCAP = "Ranger-Captain of Eos"
+ELDER = "Argothian Elder"
+DRUID = "Devoted Druid"
+VIZIER = "Vizier of Remedies"
+MANTLE = "Umbral Mantle"
 HASTE_SOURCES = ("Concordant Crossroads", "Thousand-Year Elixir", "Shang-Chi, Master of Kung Fu")
 GREAVES = "Lightning Greaves"
 
@@ -66,6 +70,7 @@ class Line:
     check: object        # ctx -> bool
     haste_always: bool = False
     gives_w: bool = False
+    untaps_sisay: bool = False  # Ashaya makes Sisay a land the engine can untap -> fetch every legend
 
 
 def _cub_ok(need):
@@ -77,21 +82,26 @@ def _cub_ok(need):
 
 LINES = [
     Line("Ashaya+Hope+Cradle", (ASHAYA, HOPE, CRADLE), (HOPE,), (1, 0, 0), "mana",
-         lambda c: c["creatures"] >= 2),
+         lambda c: c["creatures"] >= 2, untaps_sisay=True),
     Line("Ashaya+Hope+Nykthos", (ASHAYA, HOPE, NYKTHOS), (HOPE,), (3, 0, 0), "mana",
-         lambda c: c["devotion"] >= 4),
+         lambda c: c["devotion"] >= 4, untaps_sisay=True),
     Line("Ashaya+Hope+Selvala", (ASHAYA, HOPE, SELVALA), (HOPE, SELVALA), (1, 1, 0), "mana",
-         lambda c: c["ashaya_power"] >= 3, gives_w=True),
+         lambda c: c["ashaya_power"] >= 3, gives_w=True, untaps_sisay=True),
     Line("Ashaya+Hope+Bloom", (ASHAYA, HOPE, BLOOM), (HOPE, BLOOM), (1, 0, 0), "mana",
-         lambda c: c["w_perm"], gives_w=True),
-    Line("Ashaya+Hope+Cub", (ASHAYA, HOPE, CUB), (HOPE,), (1, 0, 0), "mana", _cub_ok(1)),
+         lambda c: c["w_perm"], gives_w=True, untaps_sisay=True),
+    Line("Ashaya+Hope+Cub", (ASHAYA, HOPE, CUB), (HOPE,), (1, 0, 0), "mana", _cub_ok(1), untaps_sisay=True),
     Line("Ashaya+Magus+Cradle", (ASHAYA, MAGUS, CRADLE), (MAGUS,), (2, 0, 0), "mana",
-         lambda c: c["creatures"] >= 3),
+         lambda c: c["creatures"] >= 3, untaps_sisay=True),
     Line("Ashaya+Magus+Nykthos", (ASHAYA, MAGUS, NYKTHOS), (MAGUS,), (4, 0, 0), "mana",
-         lambda c: c["devotion"] >= 5),
+         lambda c: c["devotion"] >= 5, untaps_sisay=True),
     Line("Ashaya+Magus+Selvala", (ASHAYA, MAGUS, SELVALA), (MAGUS, SELVALA), (2, 1, 0), "mana",
-         lambda c: c["ashaya_power"] >= 4, gives_w=True),
-    Line("Ashaya+Magus+Cub", (ASHAYA, MAGUS, CUB), (MAGUS,), (3, 0, 0), "mana", _cub_ok(2)),
+         lambda c: c["ashaya_power"] >= 4, gives_w=True, untaps_sisay=True),
+    Line("Ashaya+Magus+Cub", (ASHAYA, MAGUS, CUB), (MAGUS,), (3, 0, 0), "mana", _cub_ok(2), untaps_sisay=True),
+    Line("Ashaya+Argothian Elder", (ASHAYA, ELDER), (ELDER,), ZERO, "mana",
+         lambda c: True, untaps_sisay=True),
+    Line("Devoted Druid+Vizier", (DRUID, VIZIER), (DRUID,), ZERO, "mana", lambda c: True),
+    Line("Selvala+Umbral Mantle", (SELVALA, MANTLE), (SELVALA,), (3, 1, 0), "mana",
+         lambda c: c["max_power"] >= 4, gives_w=True),
     Line("Emiel+Flash+Selvala", (EMIEL, FLASH, SELVALA, ASHAYA), (SELVALA,), (3, 1, 0), "win",
          lambda c: c["ashaya_power"] >= 5),
     Line("Emiel+Selvala+haste", (EMIEL, SELVALA, ASHAYA), (SELVALA,), (3, 1, 0), "win",
@@ -527,6 +537,9 @@ class Game:
                 knight = self.perm("Knight of the Reliquary")
                 if knight and self.can_tap(knight):
                     opts.append(Opt(ZERO, frozenset({"knight"}), card, "Knight of the Reliquary"))
+                reclaimer = self.perm("Elvish Reclaimer")
+                if reclaimer and self.can_tap(reclaimer):
+                    opts.append(Opt((2, 0, 0), frozenset({"reclaimer"}), card, "Elvish Reclaimer"))
                 if "Crop Rotation" in tutors:
                     opts.append(Opt((1, 1, 0), frozenset({"Crop Rotation"}), card, "Crop Rotation"))
                 if "Sylvan Scrying" in tutors and land is None:
@@ -626,6 +639,9 @@ class Game:
                 "tap_creatures": creatures if haste_now or any(
                     c.name in HASTE_SOURCES for c in entering) else cur_nonsick,
                 "line_tappers": len(line.tappers),
+                "max_power": max(self.max_power(), 2,
+                                 lands + cur_nonland_creatures + len(ent_creatures)
+                                 if self.on_bf(ASHAYA) or any(c.name == ASHAYA for c in entering) else 0),
             }
             if not line.check(ctx):
                 continue
@@ -662,8 +678,8 @@ class Game:
         if SPEAKER in hand and "hand:" + SPEAKER not in uses and len(self.hand) >= 2:
             return True
         sisay = self.perm(SISAY)
-        if sisay and (not sisay.sick or haste):
-            return True  # Hope Tender / Magus untap Sisay (a land under Ashaya) -> fetch Kamahl
+        if line.untaps_sisay and sisay and (not sisay.sick or haste):
+            return True  # the engine untaps Sisay (a land under Ashaya) -> fetch Kamahl
         return False
 
     def available_lines(self):
@@ -955,7 +971,8 @@ class Game:
                 break
         card = self.hand_card("Enlightened Tutor")
         if card and self.can_pay(card.cost):
-            for t in ("Survival of the Fittest", "Concordant Crossroads", "Thousand-Year Elixir"):
+            for t in ([MANTLE] if MANTLE in missing else []) + [
+                    "Survival of the Fittest", "Concordant Crossroads", "Thousand-Year Elixir"]:
                 got = self.search(t)
                 if got:
                     self.cast(card)
