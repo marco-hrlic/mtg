@@ -38,6 +38,7 @@ MANTLE = "Umbral Mantle"
 QUIRION = "Quirion Ranger"
 SCRYB = "Scryb Ranger"
 FANATIC = "Fanatic of Rhonas"
+BALLISTA = "Walking Ballista"
 HASTE_SOURCES = ("Concordant Crossroads", "Thousand-Year Elixir", "Shang-Chi, Master of Kung Fu")
 GREAVES = "Lightning Greaves"
 
@@ -679,11 +680,19 @@ class Game:
         if line.kind == "win":
             return True
         hand = {c.name for c in self.hand}
-        if KAMAHL in hand or self.on_bf(KAMAHL):
+        if any(k in hand or self.on_bf(k) for k in (KAMAHL, BALLISTA)):
             return True
         if "Finale of Devastation" in hand and "Finale of Devastation" not in uses:
             return True
-        for t in ("Green Sun's Zenith", "Chord of Calling", "Natural Order", "Nature's Rhythm", "Summoner's Pact"):
+        # every remaining outlet is "tutor up Kamahl" (green) or Walking Ballista (colorless)
+        lib = {c.name for c in self.library}
+        kamahl, ballista = KAMAHL in lib, BALLISTA in lib
+        if not (kamahl or ballista):
+            return False
+        for t in ("Green Sun's Zenith", "Natural Order", "Summoner's Pact"):
+            if kamahl and t in hand and t not in uses:
+                return True
+        for t in ("Chord of Calling", "Nature's Rhythm", "Eldritch Evolution"):
             if t in hand and t not in uses:
                 return True
         if "Eladamri's Call" in hand and "Eladamri's Call" not in uses and (line.gives_w or self.has_w_source()):
@@ -694,7 +703,7 @@ class Game:
         if SPEAKER in hand and "hand:" + SPEAKER not in uses and len(self.hand) >= 2:
             return True
         sisay = self.perm(SISAY)
-        if line.untaps_sisay and sisay and (not sisay.sick or haste):
+        if kamahl and line.untaps_sisay and sisay and (not sisay.sick or haste):
             return True  # the engine untaps Sisay (a land under Ashaya) -> fetch Kamahl
         return False
 

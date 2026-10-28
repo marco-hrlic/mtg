@@ -193,6 +193,8 @@ CANDIDATES = [
     C("Vizier of Remedies", "creature", "1W", tags="vizier", power=2),
     C("Umbral Mantle", "artifact", "3", tags="mantle"),
     C("Elvish Reclaimer", "creature", "G", tags="reclaimer"),
+    C("Gilded Goose", "creature", "G", mana="A", tags="dork"),
+    C("Walking Ballista", "artifact creature", "", tags="ballista"),
 ]
 
 BY_NAME = {c.name: c for c in CARDS + CANDIDATES}
