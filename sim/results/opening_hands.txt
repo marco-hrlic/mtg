@@ -1,0 +1,22 @@
+ #       A       B       C       D   D: keep est vs mulligan value   hand
+ 1    keep    keep    keep    keep                  0.250 vs 0.242   Eiganjo, Seat of the Empire, Nykthos, Shrine to Nyx, Sylvan Tutor, Verdant Catacombs, Voyaging Satyr, Chrome Mox, Mayor Tong of Chin Village
+ 2    keep    keep    keep    mull                  0.000 vs 0.242   Boseiju, Who Endures, Scryb Ranger, Avacyn's Pilgrim, Boromir, Warden of the Tower, Arbor Elf, Lightning Greaves, Birds of Paradise
+ 3    mull    mull    keep    mull                  0.096 vs 0.242   Enlightened Tutor, Knight of the Reliquary, Eldritch Evolution, Esper Sentinel, Flooded Strand, Fyndhorn Elves, Nature's Rhythm
+ 4    keep    keep    keep    mull                  0.000 vs 0.242   Gaea's Cradle, Quirion Ranger, Branchloft Pathway, Flash Thompson, Spider-Fan, Vitalize, Wild Growth, Arbor Elf
+ 5    mull    mull    mull    mull                  0.125 vs 0.242   Marsh Flats, Toph, the Blind Bandit, Marvin, Murderous Mimic, Mox Amber, Temple Garden, Ancient Tomb, Bloom Tender
+ 6    mull    mull    mull    mull                  0.000 vs 0.242   Green Sun's Zenith, Kamahl, Fist of Krosa, Toph, the Blind Bandit, Ancient Tomb, Flash Thompson, Spider-Fan, Natural Order, Verdant Touch
+ 7    keep    mull    keep    mull                  0.125 vs 0.242   Ancient Tomb, Wooded Foothills, Sylvan Scrying, Emiel the Blessed, Mox Diamond, Wall of Roots, Scryb Ranger
+ 8    mull    mull    mull    mull                  0.000 vs 0.242   Animate Land, Nature's Chosen, Veil of Summer, Wooded Foothills, Marvin, Murderous Mimic, Scryb Ranger, Kamahl, Fist of Krosa
+ 9    mull    mull    mull    mull                  0.000 vs 0.242   Sylvan Tutor, Marvin, Murderous Mimic, Formidable Speaker, Ranger-Captain of Eos, Mana Vault, Verdant Touch, Chord of Calling
+10    mull    mull    mull    mull                  0.000 vs 0.242   Lightning Greaves, Marsh Flats, Ashaya, Soul of the Wild, Nature's Chosen, Silence, Vitalize, Utopia Sprawl
+11    keep    keep    keep    keep                  0.333 vs 0.242   Forest, Mana Vault, Shang-Chi, Master of Kung Fu, Llanowar Elves, Wooded Foothills, Mox Diamond, Crop Rotation
+12    mull    mull    mull    mull                  0.000 vs 0.242   Grand Abolisher, Sylvan Scrying, Horizon Canopy, Swords to Plowshares, Lotus Petal, Survival of the Fittest, Summoner's Pact
+13    mull    mull    mull    mull                  0.000 vs 0.242   Grand Abolisher, Elvish Mystic, Ranger-Captain of Eos, Wall of Roots, Knight of the Reliquary, Delighted Halfling, Voyaging Satyr
+14    mull    mull    mull    mull                  0.000 vs 0.242   Wild Growth, Shang-Chi, Master of Kung Fu, Chord of Calling, Swords to Plowshares, Mox Diamond, Vitalize, Mayor Tong of Chin Village
+
+Cradle in the opener but the rollout says take the free mulligan:
+  0.000 < 0.242  Gaea's Cradle, Quirion Ranger, Branchloft Pathway, Flash Thompson, Spider-Fan, Vitalize, Wild Growth, Arbor Elf
+
+No Cradle and no engine piece, but the rollout keeps:
+  0.250 >= 0.242  Eiganjo, Seat of the Empire, Nykthos, Shrine to Nyx, Sylvan Tutor, Verdant Catacombs, Voyaging Satyr, Chrome Mox, Mayor Tong of Chin Village
+  0.333 >= 0.242  Forest, Mana Vault, Shang-Chi, Master of Kung Fu, Llanowar Elves, Wooded Foothills, Mox Diamond, Crop Rotation

@@ -775,37 +775,42 @@ class Game:
         return len(elves) + extra >= 3
 
     def _outlet(self, line, uses, haste):
+        """Name of the way infinite mana becomes lethal, or None."""
         if line.kind == "win":
-            return True
+            return "line wins by itself"
         hand = {c.name for c in self.hand}
         lib = {c.name for c in self.library}
         if "Finale of Devastation" in hand and "Finale of Devastation" not in uses:
-            return True
-        # each remaining outlet is a finisher in hand/play, or a tutor that can find one
+            return "Finale of Devastation in hand"
         finishers = [KAMAHL] + ([EZURI] if self._ezuri_live(haste) else [])
+        for f in finishers:
+            if f in hand:
+                return f"{f} in hand"
+            if self.on_bf(f):
+                return f"{f} on battlefield"
+        if BALLISTA in hand or self.on_bf(BALLISTA):
+            return "Walking Ballista"
         green = [f for f in finishers if f in lib]
-        if any(f in hand or self.on_bf(f) for f in finishers) or (BALLISTA in hand or self.on_bf(BALLISTA)):
-            return True
         anything = green + ([BALLISTA] if BALLISTA in lib else [])
         if not anything:
-            return False
+            return None
         for t in ("Green Sun's Zenith", "Natural Order", "Summoner's Pact"):
             if green and t in hand and t not in uses:
-                return True
+                return f"{t} -> {green[0]}"
         for t in ("Chord of Calling", "Nature's Rhythm", "Eldritch Evolution"):
             if t in hand and t not in uses:
-                return True
+                return f"{t} -> {anything[0]}"
         if "Eladamri's Call" in hand and "Eladamri's Call" not in uses and (line.gives_w or self.has_w_source()):
-            return True
+            return f"Eladamri's Call -> {anything[0]}"
         if self.on_bf("Survival of the Fittest") and "survival" not in uses and any(
                 c.is_("creature") for c in self.hand):
-            return True
+            return f"Survival -> {anything[0]}"
         if SPEAKER in hand and "hand:" + SPEAKER not in uses and len(self.hand) >= 2:
-            return True
+            return f"Formidable Speaker -> {anything[0]}"
         sisay = self.perm(SISAY)
         if green and line.untaps_sisay and sisay and (not sisay.sick or haste):
-            return True  # the engine untaps/re-buys Sisay -> fetch a legendary finisher
-        return False
+            return f"loop untaps Sisay -> {green[0]}"
+        return None
 
     def available_lines(self):
         """Names of every line that could be completed (with an outlet) right now."""
@@ -844,8 +849,10 @@ class Game:
                     if res is None:
                         continue
                     _, combo, uses, haste = res
-                    if self._outlet(line, uses, haste):
+                    outlet = self._outlet(line, uses, haste)
+                    if outlet:
                         self._last_burst = label
+                        self._last_outlet = outlet
                         return line, combo, land, True
                     if fallback is None:
                         fallback = (line, combo, land, False)
@@ -1181,12 +1188,15 @@ class Game:
                 self.mark("protected_lethal")
             self.result["win_turn"] = self.turn
             self.result["line"] = line.name
+            self.result["outlet"] = self._last_outlet
             self.result["uses"] = tuple(o.how for o in combo if o.how not in ("battlefield",)) + (
                 (self._last_burst,) if self._last_burst else ())
             self.result["available"] = tuple(self.available_lines())
             if self.log_on:
                 how = ", ".join(f"{(o.enter.name if o.enter else '-')} via {o.how}" for o in combo)
-                self.log(f"WIN with {line.name}" + (f" (land: {land.name})" if land else "") + f": {how}")
+                self.log(f"WIN with {line.name}" + (f" (land: {land.name})" if land else "") + f": {how}"
+                         + f"; finish: {self._last_outlet}" + (f"; burst: {self._last_burst}" if self._last_burst else "")
+                         + f"; attackers {self.attackers()}; protected: {self.result['protected']}")
             return True
         if self.result["noout_turn"] is None:
             self.result["noout_turn"] = self.turn

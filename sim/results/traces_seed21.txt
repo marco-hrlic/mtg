@@ -1,0 +1,744 @@
+===== game 1: win T6 via Emiel+Flash+Selvala
+T0: opening hand: Grand Abolisher, Emiel the Blessed, Ashaya, Soul of the Wild, Bountiful Promenade, Arbor Elf, Marsh Flats, Plains
+T1: play Marsh Flats, fetch Savannah
+T1: cast Mana Vault
+T1: board: Savannah, Mana Vault
+T2: play Flooded Strand, fetch Temple Garden
+T2: cast Arbor Elf
+T2: board: Savannah, Mana Vault, Temple Garden, Arbor Elf
+T3: play Bountiful Promenade
+T3: cast Captain Sisay
+T3: cast Grand Abolisher
+T3: board: Savannah, Mana Vault, Temple Garden, Arbor Elf, Bountiful Promenade, Captain Sisay, Grand Abolisher
+T4: play Plains
+T4: cast Ashaya, Soul of the Wild
+T4: Sisay fetches Selvala, Heart of the Wilds
+T4: board: Savannah, Mana Vault, Temple Garden, Arbor Elf, Bountiful Promenade, Captain Sisay, Grand Abolisher, Plains, Ashaya, Soul of the Wild
+T5: play Dryad Arbor
+T5: cast Emiel the Blessed
+T5: cast Selvala, Heart of the Wilds
+T5: board: Savannah, Mana Vault, Temple Garden, Arbor Elf, Bountiful Promenade, Captain Sisay, Grand Abolisher, Plains, Ashaya, Soul of the Wild, Dryad Arbor, Emiel the Blessed, Selvala, Heart of the Wilds
+T6: WIN with Emiel+Flash+Selvala: - via battlefield, Flash Thompson, Spider-Fan via Sisay, - via battlefield
+
+===== game 2: win T4 via Ashaya+Quirion+Bloom
+T0: opening hand: Animate Land, Wild Growth, Shang-Chi, Master of Kung Fu, Gaea's Cradle, Bountiful Promenade, Chord of Calling, Cavern of Souls
+T1: play Bountiful Promenade
+T1: board: Bountiful Promenade
+T2: play Cavern of Souls
+T2: cast Bloom Tender
+T2: board: Bountiful Promenade, Cavern of Souls, Bloom Tender
+T3: play Misty Rainforest, fetch Savannah
+T3: cast Wild Growth
+T3: cast Captain Sisay
+T3: board: Bountiful Promenade, Cavern of Souls, Bloom Tender, Savannah, Wild Growth, Captain Sisay
+T4: WIN with Ashaya+Quirion+Bloom (land: Gaea's Cradle): Ashaya, Soul of the Wild via Sisay, Quirion Ranger via Chord of Calling, - via battlefield
+
+===== game 3: win T6 via Ashaya+Scryb+Selvala
+T0: opening hand: Scryb Ranger, Misty Rainforest, Llanowar Elves, Nykthos, Shrine to Nyx, Brushland, Spectacular Spider-Man, Savannah
+T1: play Misty Rainforest, fetch Temple Garden
+T1: cast Llanowar Elves
+T1: board: Temple Garden, Llanowar Elves
+T2: play Nykthos, Shrine to Nyx
+T2: cast Spectacular Spider-Man
+T2: board: Temple Garden, Llanowar Elves, Nykthos, Shrine to Nyx, Spectacular Spider-Man
+T3: play Brushland
+T3: cast Captain Sisay
+T3: board: Temple Garden, Llanowar Elves, Nykthos, Shrine to Nyx, Spectacular Spider-Man, Brushland, Captain Sisay
+T4: play Savannah
+T4: cast Mox Amber
+T4: cast Scryb Ranger
+T4: Sisay fetches Ashaya, Soul of the Wild
+T4: board: Temple Garden, Llanowar Elves, Nykthos, Shrine to Nyx, Spectacular Spider-Man, Brushland, Captain Sisay, Savannah, Mox Amber, Scryb Ranger
+T5: play Ancient Tomb
+T5: cast Ashaya, Soul of the Wild
+T5: Sisay fetches Selvala, Heart of the Wilds
+T5: board: Temple Garden, Llanowar Elves, Nykthos, Shrine to Nyx, Spectacular Spider-Man, Brushland, Captain Sisay, Savannah, Mox Amber, Scryb Ranger, Ancient Tomb, Ashaya, Soul of the Wild
+T6: WIN with Ashaya+Scryb+Selvala: - via battlefield, - via battlefield, Selvala, Heart of the Wilds via hand, Shang-Chi, Master of Kung Fu via Sisay
+
+===== game 4: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Command Tower, Avacyn's Pilgrim, Mayor Tong of Chin Village, Boromir, Warden of the Tower, Chrome Mox, Legolas's Quick Reflexes, Nature's Chosen
+T1: play Command Tower
+T1: cast Chrome Mox
+T1: Chrome Mox imprints Legolas's Quick Reflexes
+T1: cast Avacyn's Pilgrim
+T1: board: Command Tower, Chrome Mox, Avacyn's Pilgrim
+T2: play Branchloft Pathway
+T2: cast Captain Sisay
+T2: board: Command Tower, Chrome Mox, Avacyn's Pilgrim, Branchloft Pathway, Captain Sisay
+T3: cast Mayor Tong of Chin Village
+T3: Sisay fetches Ashaya, Soul of the Wild
+T3: board: Command Tower, Chrome Mox, Avacyn's Pilgrim, Branchloft Pathway, Captain Sisay, Mayor Tong of Chin Village
+T4: play Flooded Strand, fetch Savannah
+T4: cast Ashaya, Soul of the Wild
+T4: Sisay fetches Gaea's Cradle
+T4: board: Command Tower, Chrome Mox, Avacyn's Pilgrim, Branchloft Pathway, Captain Sisay, Mayor Tong of Chin Village, Savannah, Ashaya, Soul of the Wild
+T5: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via hand, Gaea's Cradle via hand, Shang-Chi, Master of Kung Fu via Sisay
+
+===== game 5: no win
+T0: opening hand: Nature's Chosen, Wall of Roots, Sylvan Tutor, Eiganjo, Seat of the Empire, Mana Vault, Avacyn's Pilgrim, Boromir, Warden of the Tower
+T1: play Verdant Catacombs, fetch Savannah
+T1: cast Mana Vault
+T1: board: Savannah, Mana Vault
+T2: play Eiganjo, Seat of the Empire
+T2: cast Avacyn's Pilgrim
+T2: cast Boromir, Warden of the Tower
+T2: board: Savannah, Mana Vault, Eiganjo, Seat of the Empire, Avacyn's Pilgrim, Boromir, Warden of the Tower
+T3: cast Wall of Roots
+T3: cast Sylvan Tutor
+T3: Sylvan Tutor stacks Ashaya, Soul of the Wild
+T3: board: Savannah, Mana Vault, Eiganjo, Seat of the Empire, Avacyn's Pilgrim, Boromir, Warden of the Tower, Wall of Roots
+T4: cast Captain Sisay
+T4: board: Savannah, Mana Vault, Eiganjo, Seat of the Empire, Avacyn's Pilgrim, Boromir, Warden of the Tower, Wall of Roots, Captain Sisay
+T5: cast Emiel the Blessed
+T5: Sisay fetches Selvala, Heart of the Wilds
+T5: board: Savannah, Mana Vault, Eiganjo, Seat of the Empire, Avacyn's Pilgrim, Boromir, Warden of the Tower, Wall of Roots, Captain Sisay, Emiel the Blessed
+T6: cast Selvala, Heart of the Wilds
+T6: Sisay fetches Flash Thompson, Spider-Fan
+T6: board: Savannah, Mana Vault, Eiganjo, Seat of the Empire, Avacyn's Pilgrim, Boromir, Warden of the Tower, Wall of Roots, Captain Sisay, Emiel the Blessed, Selvala, Heart of the Wilds
+
+===== game 6: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Temple Garden, Llanowar Elves, Nature's Chosen, Formidable Speaker, Yavimaya, Cradle of Growth, Esper Sentinel, Cavern of Souls
+T1: play Temple Garden
+T1: cast Llanowar Elves
+T1: board: Temple Garden, Llanowar Elves
+T2: play Yavimaya, Cradle of Growth
+T2: cast Eladamri's Call
+T2: Eladamri's Call -> Ashaya, Soul of the Wild
+T2: board: Temple Garden, Llanowar Elves, Yavimaya, Cradle of Growth
+T3: play Cavern of Souls
+T3: cast Captain Sisay
+T3: board: Temple Garden, Llanowar Elves, Yavimaya, Cradle of Growth, Cavern of Souls, Captain Sisay
+T4: play Forest
+T4: cast Ashaya, Soul of the Wild
+T4: Sisay fetches Gaea's Cradle
+T4: board: Temple Garden, Llanowar Elves, Yavimaya, Cradle of Growth, Cavern of Souls, Captain Sisay, Forest, Ashaya, Soul of the Wild
+T5: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via Formidable Speaker, Gaea's Cradle via hand, Shang-Chi, Master of Kung Fu via Sisay
+
+===== game 7: no win
+T0: opening hand: Lightning Greaves, Emerald Charm, Marvin, Murderous Mimic, Ancient Tomb, Command Tower, Vitalize, Wall of Roots
+T1: play Command Tower
+T1: cast Once Upon a Time
+T1: Once Upon a Time finds Elvish Mystic
+T1: cast Elvish Mystic
+T1: board: Command Tower, Elvish Mystic
+T2: play Ancient Tomb
+T2: cast Captain Sisay
+T2: board: Command Tower, Elvish Mystic, Ancient Tomb, Captain Sisay
+T3: cast Wall of Roots
+T3: cast Marvin, Murderous Mimic
+T3: Sisay fetches Ashaya, Soul of the Wild
+T3: board: Command Tower, Elvish Mystic, Ancient Tomb, Captain Sisay, Wall of Roots, Marvin, Murderous Mimic
+T4: cast Ashaya, Soul of the Wild
+T4: cast Lightning Greaves
+T4: board: Command Tower, Elvish Mystic, Ancient Tomb, Captain Sisay, Wall of Roots, Marvin, Murderous Mimic, Ashaya, Soul of the Wild, Lightning Greaves
+T5: play Misty Rainforest, fetch Savannah
+T5: cast Esper Sentinel
+T5: Sisay fetches Gaea's Cradle
+T5: board: Command Tower, Elvish Mystic, Ancient Tomb, Captain Sisay, Wall of Roots, Marvin, Murderous Mimic, Ashaya, Soul of the Wild, Lightning Greaves, Savannah, Esper Sentinel
+T6: play Gaea's Cradle
+T6: Sisay fetches Nykthos, Shrine to Nyx
+T6: board: Command Tower, Elvish Mystic, Ancient Tomb, Captain Sisay, Wall of Roots, Marvin, Murderous Mimic, Ashaya, Soul of the Wild, Lightning Greaves, Savannah, Esper Sentinel, Gaea's Cradle
+
+===== game 8: win T5 via Emiel+Flash+Fanatic
+T0: opening hand: Gemstone Caverns, Horizon Canopy, Flash Thompson, Spider-Fan, Verdant Touch, Nature's Chosen, Survival of the Fittest, Ancient Tomb
+T1: play Horizon Canopy
+T1: cast Survival of the Fittest
+T1: board: Horizon Canopy, Survival of the Fittest
+T2: play Ancient Tomb
+T2: cast Flash Thompson, Spider-Fan
+T2: board: Horizon Canopy, Survival of the Fittest, Ancient Tomb, Flash Thompson, Spider-Fan
+T3: play Gemstone Caverns
+T3: cast Fanatic of Rhonas
+T3: board: Horizon Canopy, Survival of the Fittest, Ancient Tomb, Flash Thompson, Spider-Fan, Gemstone Caverns, Fanatic of Rhonas
+T4: play Brushland
+T4: cast Captain Sisay
+T4: cast Shang-Chi, Master of Kung Fu
+T4: Sisay fetches Emiel the Blessed
+T4: board: Horizon Canopy, Survival of the Fittest, Ancient Tomb, Flash Thompson, Spider-Fan, Gemstone Caverns, Fanatic of Rhonas, Brushland, Captain Sisay, Shang-Chi, Master of Kung Fu
+T5: WIN with Emiel+Flash+Fanatic (land: Yavimaya, Cradle of Growth): Emiel the Blessed via hand, - via battlefield, - via battlefield
+
+===== game 9: win T4 via Ashaya+Hope+Cradle
+T0: opening hand: Chrome Mox, Eladamri's Call, Gemstone Caverns, Hope Tender, Cavern of Souls, Nature's Chosen, Worldly Tutor
+T1: play Cavern of Souls
+T1: cast Chrome Mox
+T1: Chrome Mox imprints Nature's Chosen
+T1: cast Hope Tender
+T1: board: Cavern of Souls, Chrome Mox, Hope Tender
+T2: play Gemstone Caverns
+T2: cast Eladamri's Call
+T2: Eladamri's Call -> Ashaya, Soul of the Wild
+T2: board: Cavern of Souls, Chrome Mox, Hope Tender, Gemstone Caverns
+T3: play Bountiful Promenade
+T3: cast Captain Sisay
+T3: board: Cavern of Souls, Chrome Mox, Hope Tender, Gemstone Caverns, Bountiful Promenade, Captain Sisay
+T4: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via Sisay
+
+===== game 10: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Eladamri's Call, Knight of the Reliquary, Plains, Survival of the Fittest, Savannah, Arbor Elf, Birds of Paradise
+T1: play Savannah
+T1: cast Arbor Elf
+T1: board: Savannah, Arbor Elf
+T2: play Plains
+T2: cast Birds of Paradise
+T2: cast Survival of the Fittest
+T2: board: Savannah, Arbor Elf, Plains, Birds of Paradise, Survival of the Fittest
+T3: cast Elvish Mystic
+T3: cast Knight of the Reliquary
+T3: board: Savannah, Arbor Elf, Plains, Birds of Paradise, Survival of the Fittest, Elvish Mystic, Knight of the Reliquary
+T4: cast Captain Sisay
+T4: board: Savannah, Arbor Elf, Plains, Birds of Paradise, Survival of the Fittest, Elvish Mystic, Knight of the Reliquary, Captain Sisay
+T5: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via Sisay, Hope Tender via Green Sun's Zenith, Gaea's Cradle via Knight of the Reliquary, Shang-Chi, Master of Kung Fu via Survival
+
+===== game 11: win T5 via Ashaya+Quirion+Fanatic
+T0: opening hand: Survival of the Fittest, Nykthos, Shrine to Nyx, Delighted Halfling, Fanatic of Rhonas, Bountiful Promenade, Scryb Ranger
+T1: play Bountiful Promenade
+T1: cast Quirion Ranger
+T1: board: Bountiful Promenade, Quirion Ranger
+T2: play Nykthos, Shrine to Nyx
+T2: cast Delighted Halfling
+T2: board: Bountiful Promenade, Quirion Ranger, Nykthos, Shrine to Nyx, Delighted Halfling
+T3: cast Captain Sisay
+T3: board: Bountiful Promenade, Quirion Ranger, Nykthos, Shrine to Nyx, Delighted Halfling, Captain Sisay
+T4: play Savannah
+T4: cast Fanatic of Rhonas
+T4: Sisay fetches Ashaya, Soul of the Wild
+T4: board: Bountiful Promenade, Quirion Ranger, Nykthos, Shrine to Nyx, Delighted Halfling, Captain Sisay, Savannah, Fanatic of Rhonas
+T5: WIN with Ashaya+Quirion+Fanatic: Ashaya, Soul of the Wild via hand, - via battlefield, - via battlefield
+
+===== game 12: win T5 via Emiel+Flash+Cradle+Cub
+T0: opening hand: Selvala, Heart of the Wilds, Emiel the Blessed, Green Sun's Zenith, Command Tower, Misty Rainforest, Sylvan Tutor, Llanowar Elves
+T1: play Misty Rainforest, fetch Savannah
+T1: cast Llanowar Elves
+T1: board: Savannah, Llanowar Elves
+T2: play Command Tower
+T2: cast Fyndhorn Elves
+T2: board: Savannah, Llanowar Elves, Command Tower, Fyndhorn Elves
+T3: cast Captain Sisay
+T3: board: Savannah, Llanowar Elves, Command Tower, Fyndhorn Elves, Captain Sisay
+T4: play Forest
+T4: cast Emiel the Blessed
+T4: Sisay fetches Flash Thompson, Spider-Fan
+T4: board: Savannah, Llanowar Elves, Command Tower, Fyndhorn Elves, Captain Sisay, Forest, Emiel the Blessed
+T5: WIN with Emiel+Flash+Cradle+Cub: - via battlefield, Flash Thompson, Spider-Fan via hand, Gaea's Cradle via Sisay, Badgermole Cub via Green Sun's Zenith
+
+===== game 13: win T6 via Emiel+Flash+Cradle+Cub
+T0: opening hand: Elvish Mystic, Plains, Survival of the Fittest, Mana Vault, Mayor Tong of Chin Village, Gemstone Caverns, Boromir, Warden of the Tower
+T1: play Plains
+T1: cast Mana Vault
+T1: cast Marvin, Murderous Mimic
+T1: board: Plains, Mana Vault, Marvin, Murderous Mimic
+T2: play Gemstone Caverns
+T2: cast Mayor Tong of Chin Village
+T2: board: Plains, Mana Vault, Marvin, Murderous Mimic, Gemstone Caverns, Mayor Tong of Chin Village
+T3: play Boseiju, Who Endures
+T3: cast Elvish Mystic
+T3: board: Plains, Mana Vault, Marvin, Murderous Mimic, Gemstone Caverns, Mayor Tong of Chin Village, Boseiju, Who Endures, Elvish Mystic
+T4: cast Captain Sisay
+T4: board: Plains, Mana Vault, Marvin, Murderous Mimic, Gemstone Caverns, Mayor Tong of Chin Village, Boseiju, Who Endures, Elvish Mystic, Captain Sisay
+T5: play Brushland
+T5: cast Emiel the Blessed
+T5: cast Survival of the Fittest
+T5: Sisay fetches Selvala, Heart of the Wilds
+T5: board: Plains, Mana Vault, Marvin, Murderous Mimic, Gemstone Caverns, Mayor Tong of Chin Village, Boseiju, Who Endures, Elvish Mystic, Captain Sisay, Brushland, Emiel the Blessed, Survival of the Fittest
+T6: WIN with Emiel+Flash+Cradle+Cub: - via battlefield, Flash Thompson, Spider-Fan via Sisay, Gaea's Cradle via Crop Rotation, Badgermole Cub via Survival
+
+===== game 14: no win
+T0: opening hand: Esper Sentinel, Wild Growth, Windswept Heath, Fanatic of Rhonas, Veil of Summer, Boseiju, Who Endures, Boromir, Warden of the Tower
+T1: play Windswept Heath, fetch Savannah
+T1: cast Wild Growth
+T1: board: Savannah, Wild Growth
+T2: play Boseiju, Who Endures
+T2: cast Flash Thompson, Spider-Fan
+T2: cast Worldly Tutor
+T2: Worldly Tutor stacks Emiel the Blessed
+T2: board: Savannah, Wild Growth, Boseiju, Who Endures, Flash Thompson, Spider-Fan
+T3: cast Esper Sentinel
+T3: board: Savannah, Wild Growth, Boseiju, Who Endures, Flash Thompson, Spider-Fan, Esper Sentinel
+T4: cast Boromir, Warden of the Tower
+T4: board: Savannah, Wild Growth, Boseiju, Who Endures, Flash Thompson, Spider-Fan, Esper Sentinel, Boromir, Warden of the Tower
+T5: cast Voyaging Satyr
+T5: board: Savannah, Wild Growth, Boseiju, Who Endures, Flash Thompson, Spider-Fan, Esper Sentinel, Boromir, Warden of the Tower, Voyaging Satyr
+T6: cast Captain Sisay
+T6: board: Savannah, Wild Growth, Boseiju, Who Endures, Flash Thompson, Spider-Fan, Esper Sentinel, Boromir, Warden of the Tower, Voyaging Satyr, Captain Sisay
+
+===== game 15: win T5 via Emiel+Flash+Satyr+Cradle
+T0: opening hand: Arbor Elf, Wooded Foothills, Dryad Arbor, Mana Vault, Voyaging Satyr, Gaea's Cradle, Enlightened Tutor
+T1: play Wooded Foothills, fetch Savannah
+T1: cast Mana Vault
+T1: board: Savannah, Mana Vault
+T2: play Verdant Catacombs, fetch Temple Garden
+T2: cast Arbor Elf
+T2: cast Voyaging Satyr
+T2: board: Savannah, Mana Vault, Temple Garden, Arbor Elf, Voyaging Satyr
+T3: play Gaea's Cradle
+T3: cast Sol Ring
+T3: cast Captain Sisay
+T3: cast Esper Sentinel
+T3: board: Savannah, Mana Vault, Temple Garden, Arbor Elf, Voyaging Satyr, Gaea's Cradle, Sol Ring, Captain Sisay, Esper Sentinel
+T4: play Dryad Arbor
+T4: cast Selvala, Heart of the Wilds
+T4: Sisay fetches Emiel the Blessed
+T4: cast Enlightened Tutor
+T4: Enlightened Tutor stacks Survival of the Fittest
+T4: board: Savannah, Mana Vault, Temple Garden, Arbor Elf, Voyaging Satyr, Gaea's Cradle, Sol Ring, Captain Sisay, Esper Sentinel, Dryad Arbor, Selvala, Heart of the Wilds
+T5: WIN with Emiel+Flash+Satyr+Cradle: Emiel the Blessed via hand, Flash Thompson, Spider-Fan via Sisay, - via battlefield, - via battlefield
+
+===== game 16: win T4 via Ashaya+Hope+Cradle
+T0: opening hand: Green Sun's Zenith, Fyndhorn Elves, Mox Amber, Avacyn's Pilgrim, Boseiju, Who Endures, Eiganjo, Seat of the Empire, Concordant Crossroads
+T1: play Boseiju, Who Endures
+T1: cast Fyndhorn Elves
+T1: board: Boseiju, Who Endures, Fyndhorn Elves
+T2: play Eiganjo, Seat of the Empire
+T2: cast Avacyn's Pilgrim
+T2: cast Concordant Crossroads
+T2: board: Boseiju, Who Endures, Fyndhorn Elves, Eiganjo, Seat of the Empire, Avacyn's Pilgrim, Concordant Crossroads
+T3: cast Captain Sisay
+T3: cast Mox Amber
+T3: Sisay fetches Emiel the Blessed
+T3: board: Boseiju, Who Endures, Fyndhorn Elves, Eiganjo, Seat of the Empire, Avacyn's Pilgrim, Concordant Crossroads, Captain Sisay, Mox Amber
+T4: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via Natural Order, Hope Tender via Green Sun's Zenith, Gaea's Cradle via Sisay
+
+===== game 17: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Forest, Nykthos, Shrine to Nyx, Concordant Crossroads, Sylvan Tutor, Lotus Petal, Gemstone Caverns, Dryad Arbor
+T1: play Forest
+T1: cast Concordant Crossroads
+T1: board: Forest, Concordant Crossroads
+T2: play Nykthos, Shrine to Nyx
+T2: cast Magus of the Candelabra
+T2: board: Forest, Concordant Crossroads, Nykthos, Shrine to Nyx, Magus of the Candelabra
+T3: play Gemstone Caverns
+T3: cast Captain Sisay
+T3: Sisay fetches Ashaya, Soul of the Wild
+T3: board: Forest, Concordant Crossroads, Nykthos, Shrine to Nyx, Magus of the Candelabra, Gemstone Caverns, Captain Sisay
+T4: play Dryad Arbor
+T4: cast Badgermole Cub
+T4: cast Lightning Greaves
+T4: Sisay fetches Gaea's Cradle
+T4: board: Forest, Concordant Crossroads, Nykthos, Shrine to Nyx, Magus of the Candelabra, Gemstone Caverns, Captain Sisay, Dryad Arbor, Badgermole Cub, Lightning Greaves
+T5: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, Hope Tender via Finale of Devastation, Gaea's Cradle via hand
+
+===== game 18: win T6 via Ashaya+Hope+Cradle
+T0: opening hand: Verdant Catacombs, Elvish Spirit Guide, Silence, Yavimaya, Cradle of Growth, Sylvan Tutor, Vitalize, Utopia Sprawl
+T1: play Verdant Catacombs, fetch Savannah
+T1: cast Utopia Sprawl
+T1: cast Sylvan Tutor
+T1: Sylvan Tutor stacks Ashaya, Soul of the Wild
+T1: board: Savannah, Utopia Sprawl
+T2: play Yavimaya, Cradle of Growth
+T2: cast Captain Sisay
+T2: board: Savannah, Utopia Sprawl, Yavimaya, Cradle of Growth, Captain Sisay
+T3: Sisay fetches Gaea's Cradle
+T3: board: Savannah, Utopia Sprawl, Yavimaya, Cradle of Growth, Captain Sisay
+T4: play Eiganjo, Seat of the Empire
+T4: Sisay fetches Nykthos, Shrine to Nyx
+T4: board: Savannah, Utopia Sprawl, Yavimaya, Cradle of Growth, Captain Sisay, Eiganjo, Seat of the Empire
+T5: play Nykthos, Shrine to Nyx
+T5: cast Wild Growth
+T5: cast Ashaya, Soul of the Wild
+T5: Sisay fetches Selvala, Heart of the Wilds
+T5: board: Savannah, Utopia Sprawl, Yavimaya, Cradle of Growth, Captain Sisay, Eiganjo, Seat of the Empire, Nykthos, Shrine to Nyx, Wild Growth, Ashaya, Soul of the Wild
+T6: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via Summoner's Pact, Gaea's Cradle via hand, Shang-Chi, Master of Kung Fu via Sisay
+
+===== game 19: win T6 via Ashaya+Hope+Cradle
+T0: opening hand: Swords to Plowshares, Gaea's Cradle, Mana Vault, Toph, the Blind Bandit, Shang-Chi, Master of Kung Fu, Wild Growth, Windswept Heath
+T1: play Windswept Heath, fetch Savannah
+T1: cast Mana Vault
+T1: board: Savannah, Mana Vault
+T2: play Forest
+T2: cast Wild Growth
+T2: cast Captain Sisay
+T2: board: Savannah, Mana Vault, Forest, Wild Growth, Captain Sisay
+T3: play Cavern of Souls
+T3: cast Shang-Chi, Master of Kung Fu
+T3: Sisay fetches Ashaya, Soul of the Wild
+T3: board: Savannah, Mana Vault, Forest, Wild Growth, Captain Sisay, Cavern of Souls, Shang-Chi, Master of Kung Fu
+T4: play Gaea's Cradle
+T4: cast Ashaya, Soul of the Wild
+T4: cast Jennifer Walters
+T4: cast Lightning Greaves
+T4: board: Savannah, Mana Vault, Forest, Wild Growth, Captain Sisay, Cavern of Souls, Shang-Chi, Master of Kung Fu, Gaea's Cradle, Ashaya, Soul of the Wild, Jennifer Walters, Lightning Greaves
+T5: play Arid Mesa, fetch Temple Garden
+T5: cast Toph, the Blind Bandit
+T5: board: Savannah, Mana Vault, Forest, Wild Growth, Captain Sisay, Cavern of Souls, Shang-Chi, Master of Kung Fu, Gaea's Cradle, Ashaya, Soul of the Wild, Jennifer Walters, Lightning Greaves, Temple Garden, Toph, the Blind Bandit
+T6: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via Eladamri's Call, - via battlefield
+
+===== game 20: win T6 via Ashaya+Hope+Cradle
+T0: opening hand: Legolas's Quick Reflexes, Plains, Dryad Arbor, Eladamri's Call, Ranger-Captain of Eos, Horizon Canopy, Finale of Devastation
+T1: play Horizon Canopy
+T1: board: Horizon Canopy
+T2: play Plains
+T2: cast Eladamri's Call
+T2: Eladamri's Call -> Ashaya, Soul of the Wild
+T2: board: Horizon Canopy, Plains
+T3: play Nykthos, Shrine to Nyx
+T3: cast Birds of Paradise
+T3: cast Ranger-Captain of Eos
+T3: Ranger-Captain finds Magus of the Candelabra
+T3: board: Horizon Canopy, Plains, Nykthos, Shrine to Nyx, Birds of Paradise, Ranger-Captain of Eos
+T4: play Dryad Arbor
+T4: cast Arbor Elf
+T4: cast Magus of the Candelabra
+T4: board: Horizon Canopy, Plains, Nykthos, Shrine to Nyx, Birds of Paradise, Ranger-Captain of Eos, Dryad Arbor, Arbor Elf, Magus of the Candelabra
+T5: play Verdant Catacombs, fetch Savannah
+T5: cast Captain Sisay
+T5: board: Horizon Canopy, Plains, Nykthos, Shrine to Nyx, Birds of Paradise, Ranger-Captain of Eos, Dryad Arbor, Arbor Elf, Magus of the Candelabra, Savannah, Captain Sisay
+T6: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, Hope Tender via Finale of Devastation, Gaea's Cradle via Sisay, Shang-Chi, Master of Kung Fu via Summoner's Pact
+
+===== game 21: win T4 via Emiel+Flash+Cradle+Cub
+T0: opening hand: Delighted Halfling, Temple Garden, Elvish Mystic, Animate Land, Utopia Sprawl, Marsh Flats, Brushland
+T1: play Marsh Flats, fetch Savannah
+T1: cast Utopia Sprawl
+T1: cast Elvish Mystic
+T1: board: Savannah, Utopia Sprawl, Elvish Mystic
+T2: play Temple Garden
+T2: cast Llanowar Elves
+T2: cast Delighted Halfling
+T2: board: Savannah, Utopia Sprawl, Elvish Mystic, Temple Garden, Llanowar Elves, Delighted Halfling
+T3: play Brushland
+T3: cast Captain Sisay
+T3: cast Flash Thompson, Spider-Fan
+T3: board: Savannah, Utopia Sprawl, Elvish Mystic, Temple Garden, Llanowar Elves, Delighted Halfling, Brushland, Captain Sisay, Flash Thompson, Spider-Fan
+T4: WIN with Emiel+Flash+Cradle+Cub: Emiel the Blessed via Eldritch Evolution, - via battlefield, Gaea's Cradle via Sisay, Badgermole Cub via Chord of Calling
+
+===== game 22: no win
+T0: opening hand: Concordant Crossroads, Wild Growth, Plains, Voice of Victory, Eldritch Evolution, Thousand-Year Elixir, Voyaging Satyr
+T1: play Plains
+T1: cast Enlightened Tutor
+T1: Enlightened Tutor stacks Survival of the Fittest
+T1: board: Plains
+T2: board: Plains
+T3: play Command Tower
+T3: cast Voyaging Satyr
+T3: board: Plains, Command Tower, Voyaging Satyr
+T4: play Bountiful Promenade
+T4: cast Captain Sisay
+T4: board: Plains, Command Tower, Voyaging Satyr, Bountiful Promenade, Captain Sisay
+T5: cast Concordant Crossroads
+T5: cast Thousand-Year Elixir
+T5: Sisay fetches Ashaya, Soul of the Wild
+T5: board: Plains, Command Tower, Voyaging Satyr, Bountiful Promenade, Captain Sisay, Concordant Crossroads, Thousand-Year Elixir
+T6: cast Survival of the Fittest
+T6: cast Grand Abolisher
+T6: Sisay fetches Gaea's Cradle
+T6: board: Plains, Command Tower, Voyaging Satyr, Bountiful Promenade, Captain Sisay, Concordant Crossroads, Thousand-Year Elixir, Survival of the Fittest, Grand Abolisher
+
+===== game 23: win T6 via Ashaya+Hope+Cradle
+T0: opening hand: Animate Land, Veil of Summer, Selvala, Heart of the Wilds, Eiganjo, Seat of the Empire, Windswept Heath, Esper Sentinel, Hope Tender
+T1: play Windswept Heath, fetch Savannah
+T1: cast Esper Sentinel
+T1: board: Savannah, Esper Sentinel
+T2: play Eiganjo, Seat of the Empire
+T2: cast Hope Tender
+T2: board: Savannah, Esper Sentinel, Eiganjo, Seat of the Empire, Hope Tender
+T3: play Temple Garden
+T3: cast Selvala, Heart of the Wilds
+T3: board: Savannah, Esper Sentinel, Eiganjo, Seat of the Empire, Hope Tender, Temple Garden, Selvala, Heart of the Wilds
+T4: play Flooded Strand, fetch Forest
+T4: cast Captain Sisay
+T4: board: Savannah, Esper Sentinel, Eiganjo, Seat of the Empire, Hope Tender, Temple Garden, Selvala, Heart of the Wilds, Forest, Captain Sisay
+T5: cast Voyaging Satyr
+T5: cast Scryb Ranger
+T5: Sisay fetches Ashaya, Soul of the Wild
+T5: board: Savannah, Esper Sentinel, Eiganjo, Seat of the Empire, Hope Tender, Temple Garden, Selvala, Heart of the Wilds, Forest, Captain Sisay, Voyaging Satyr, Scryb Ranger
+T6: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via Sisay
+
+===== game 24: win T5 via Ashaya+Magus+Cradle
+T0: opening hand: Savannah, Sylvan Tutor, Legolas's Quick Reflexes, Once Upon a Time, Bloom Tender, Gemstone Caverns, Esper Sentinel
+T1: play Savannah
+T1: cast Once Upon a Time
+T1: Once Upon a Time finds Quirion Ranger
+T1: cast Quirion Ranger
+T1: board: Savannah, Quirion Ranger
+T2: play Gemstone Caverns
+T2: cast Bloom Tender
+T2: board: Savannah, Quirion Ranger, Gemstone Caverns, Bloom Tender
+T3: cast Captain Sisay
+T3: board: Savannah, Quirion Ranger, Gemstone Caverns, Bloom Tender, Captain Sisay
+T4: cast Birds of Paradise
+T4: cast Ranger-Captain of Eos
+T4: Ranger-Captain finds Magus of the Candelabra
+T4: cast Magus of the Candelabra
+T4: Sisay fetches Ashaya, Soul of the Wild
+T4: board: Savannah, Quirion Ranger, Gemstone Caverns, Bloom Tender, Captain Sisay, Birds of Paradise, Ranger-Captain of Eos, Magus of the Candelabra
+T5: WIN with Ashaya+Magus+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via Sisay
+
+===== game 25: win T4 via Ashaya+Hope+Cradle
+T0: opening hand: Elvish Spirit Guide, Mana Vault, Badgermole Cub, Hope Tender, Arid Mesa, Verdant Catacombs, Fal'Cie Paradise
+T1: play Arid Mesa, fetch Savannah
+T1: cast Mana Vault
+T1: cast Hope Tender
+T1: board: Savannah, Mana Vault, Hope Tender
+T2: play Ancient Tomb
+T2: cast Badgermole Cub
+T2: board: Savannah, Mana Vault, Hope Tender, Ancient Tomb, Badgermole Cub
+T3: play Verdant Catacombs, fetch Temple Garden
+T3: cast Captain Sisay
+T3: board: Savannah, Mana Vault, Hope Tender, Ancient Tomb, Badgermole Cub, Temple Garden, Captain Sisay
+T4: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via Green Sun's Zenith, - via battlefield, Gaea's Cradle via Sisay
+
+===== game 26: win T5 via Emiel+Flash+Satyr+Cradle
+T0: opening hand: Green Sun's Zenith, Fanatic of Rhonas, Chord of Calling, Lightning Greaves, Flooded Strand, Cavern of Souls, Voyaging Satyr
+T1: play Flooded Strand, fetch Savannah
+T1: board: Savannah
+T2: play Cavern of Souls
+T2: cast Voyaging Satyr
+T2: board: Savannah, Cavern of Souls, Voyaging Satyr
+T3: play Nykthos, Shrine to Nyx
+T3: cast Captain Sisay
+T3: board: Savannah, Cavern of Souls, Voyaging Satyr, Nykthos, Shrine to Nyx, Captain Sisay
+T4: cast Fanatic of Rhonas
+T4: Sisay fetches Emiel the Blessed
+T4: board: Savannah, Cavern of Souls, Voyaging Satyr, Nykthos, Shrine to Nyx, Captain Sisay, Fanatic of Rhonas
+T5: cast Emiel the Blessed
+T5: cast Formidable Speaker
+T5: Formidable Speaker discards Vitalize, finds Ashaya, Soul of the Wild
+T5: WIN with Emiel+Flash+Satyr+Cradle: - via battlefield, Flash Thompson, Spider-Fan via Chord of Calling, - via battlefield, Gaea's Cradle via Sisay
+
+===== game 27: win T3 via Ashaya+Magus+Cradle
+T0: opening hand: Magus of the Candelabra, Gaea's Cradle, Forest, Marsh Flats, Avacyn's Pilgrim, Natural Order
+T1: play Marsh Flats, fetch Savannah
+T1: cast Avacyn's Pilgrim
+T1: board: Savannah, Avacyn's Pilgrim
+T2: play Forest
+T2: cast Voyaging Satyr
+T2: cast Magus of the Candelabra
+T2: board: Savannah, Avacyn's Pilgrim, Forest, Voyaging Satyr, Magus of the Candelabra
+T3: WIN with Ashaya+Magus+Cradle: Ashaya, Soul of the Wild via Natural Order, - via battlefield, Gaea's Cradle via hand
+
+===== game 28: win T4 via Ashaya+Magus+Cradle
+T0: opening hand: Magus of the Candelabra, Knight of the Reliquary, Badgermole Cub, Mox Diamond, Command Tower, Nykthos, Shrine to Nyx, Yavimaya, Cradle of Growth
+T1: play Command Tower
+T1: cast Mox Diamond
+T1: cast Badgermole Cub
+T1: board: Command Tower, Mox Diamond, Badgermole Cub
+T2: play Nykthos, Shrine to Nyx
+T2: cast Magus of the Candelabra
+T2: board: Command Tower, Mox Diamond, Badgermole Cub, Nykthos, Shrine to Nyx, Magus of the Candelabra
+T3: play Forest
+T3: cast Captain Sisay
+T3: board: Command Tower, Mox Diamond, Badgermole Cub, Nykthos, Shrine to Nyx, Magus of the Candelabra, Forest, Captain Sisay
+T4: WIN with Ashaya+Magus+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via Sisay
+
+===== game 29: no win
+T0: opening hand: Brushland, Voyaging Satyr, Sylvan Scrying, Branchloft Pathway, Emerald Charm, Spectacular Spider-Man, Arbor Elf
+T1: play Brushland
+T1: board: Brushland
+T2: play Branchloft Pathway
+T2: cast Voyaging Satyr
+T2: board: Brushland, Branchloft Pathway, Voyaging Satyr
+T3: play Forest
+T3: cast Arbor Elf
+T3: cast Spectacular Spider-Man
+T3: board: Brushland, Branchloft Pathway, Voyaging Satyr, Forest, Arbor Elf, Spectacular Spider-Man
+T4: cast Elvish Mystic
+T4: cast Captain Sisay
+T4: board: Brushland, Branchloft Pathway, Voyaging Satyr, Forest, Arbor Elf, Spectacular Spider-Man, Elvish Mystic, Captain Sisay
+T5: cast Flash Thompson, Spider-Fan
+T5: Sisay fetches Ashaya, Soul of the Wild
+T5: board: Brushland, Branchloft Pathway, Voyaging Satyr, Forest, Arbor Elf, Spectacular Spider-Man, Elvish Mystic, Captain Sisay, Flash Thompson, Spider-Fan
+T6: cast Ashaya, Soul of the Wild
+T6: Sisay fetches Selvala, Heart of the Wilds
+T6: board: Brushland, Branchloft Pathway, Voyaging Satyr, Forest, Arbor Elf, Spectacular Spider-Man, Elvish Mystic, Captain Sisay, Flash Thompson, Spider-Fan, Ashaya, Soul of the Wild
+
+===== game 30: win T5 via Ashaya+Magus+Cradle
+T0: opening hand: Brushland, Badgermole Cub, Mox Diamond, Silence, Command Tower, Temple Garden, Sol Ring
+T1: play Brushland
+T1: cast Mox Diamond
+T1: cast Sol Ring
+T1: cast Mana Vault
+T1: cast Badgermole Cub
+T1: board: Brushland, Mox Diamond, Sol Ring, Mana Vault, Badgermole Cub
+T2: play Temple Garden
+T2: cast Captain Sisay
+T2: board: Brushland, Mox Diamond, Sol Ring, Mana Vault, Badgermole Cub, Temple Garden, Captain Sisay
+T3: cast Knight of the Reliquary
+T3: cast Marvin, Murderous Mimic
+T3: Sisay fetches Ashaya, Soul of the Wild
+T3: board: Brushland, Mox Diamond, Sol Ring, Mana Vault, Badgermole Cub, Temple Garden, Captain Sisay, Knight of the Reliquary, Marvin, Murderous Mimic
+T4: cast Ashaya, Soul of the Wild
+T4: Sisay fetches Gaea's Cradle
+T4: board: Brushland, Mox Diamond, Sol Ring, Mana Vault, Badgermole Cub, Temple Garden, Captain Sisay, Knight of the Reliquary, Marvin, Murderous Mimic, Ashaya, Soul of the Wild
+T5: WIN with Ashaya+Magus+Cradle: - via battlefield, Magus of the Candelabra via Ranger-Captain, Gaea's Cradle via hand, Shang-Chi, Master of Kung Fu via Sisay
+
+===== game 31: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Brushland, Forest, Utopia Sprawl, Fyndhorn Elves, Flash Thompson, Spider-Fan, Nature's Chosen, Emerald Charm
+T1: play Brushland
+T1: cast Fyndhorn Elves
+T1: board: Brushland, Fyndhorn Elves
+T2: play Forest
+T2: cast Utopia Sprawl
+T2: cast Scryb Ranger
+T2: board: Brushland, Fyndhorn Elves, Forest, Utopia Sprawl, Scryb Ranger
+T3: cast Captain Sisay
+T3: board: Brushland, Fyndhorn Elves, Forest, Utopia Sprawl, Scryb Ranger, Captain Sisay
+T4: cast Hope Tender
+T4: cast Flash Thompson, Spider-Fan
+T4: Sisay fetches Ashaya, Soul of the Wild
+T4: board: Brushland, Fyndhorn Elves, Forest, Utopia Sprawl, Scryb Ranger, Captain Sisay, Hope Tender, Flash Thompson, Spider-Fan
+T5: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via Sisay
+
+===== game 32: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Llanowar Elves, Hope Tender, Grand Abolisher, Finale of Devastation, Concordant Crossroads, Dryad Arbor
+T1: play Dryad Arbor
+T1: board: Dryad Arbor
+T2: cast Llanowar Elves
+T2: board: Dryad Arbor, Llanowar Elves
+T3: play Cavern of Souls
+T3: cast Voyaging Satyr
+T3: cast Concordant Crossroads
+T3: board: Dryad Arbor, Llanowar Elves, Cavern of Souls, Voyaging Satyr, Concordant Crossroads
+T4: cast Captain Sisay
+T4: Sisay fetches Ashaya, Soul of the Wild
+T4: board: Dryad Arbor, Llanowar Elves, Cavern of Souls, Voyaging Satyr, Concordant Crossroads, Captain Sisay
+T5: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, Hope Tender via hand, Gaea's Cradle via Sisay
+
+===== game 33: win T4 via Ashaya+Magus+Cradle
+T0: opening hand: Boromir, Warden of the Tower, Sylvan Tutor, Magus of the Candelabra, Wooded Foothills, Gemstone Caverns, Eladamri's Call, Temple Garden
+T1: play Wooded Foothills, fetch Savannah
+T1: cast Sol Ring
+T1: board: Savannah, Sol Ring
+T2: play Gemstone Caverns
+T2: cast Chrome Mox
+T2: Chrome Mox imprints Boromir, Warden of the Tower
+T2: cast Captain Sisay
+T2: board: Savannah, Sol Ring, Gemstone Caverns, Chrome Mox, Captain Sisay
+T3: play Temple Garden
+T3: cast Magus of the Candelabra
+T3: cast Eladamri's Call
+T3: Eladamri's Call -> Ashaya, Soul of the Wild
+T3: Sisay fetches Gaea's Cradle
+T3: board: Savannah, Sol Ring, Gemstone Caverns, Chrome Mox, Captain Sisay, Temple Garden, Magus of the Candelabra
+T4: WIN with Ashaya+Magus+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via hand
+
+===== game 34: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Yavimaya, Cradle of Growth, Dryad Arbor, Survival of the Fittest, Green Sun's Zenith, Brushland, Mayor Tong of Chin Village, Branchloft Pathway
+T1: play Brushland
+T1: cast Survival of the Fittest
+T1: board: Brushland, Survival of the Fittest
+T2: play Yavimaya, Cradle of Growth
+T2: cast Mayor Tong of Chin Village
+T2: board: Brushland, Survival of the Fittest, Yavimaya, Cradle of Growth, Mayor Tong of Chin Village
+T3: play Branchloft Pathway
+T3: cast Shang-Chi, Master of Kung Fu
+T3: board: Brushland, Survival of the Fittest, Yavimaya, Cradle of Growth, Mayor Tong of Chin Village, Branchloft Pathway, Shang-Chi, Master of Kung Fu
+T4: play Dryad Arbor
+T4: cast Captain Sisay
+T4: Sisay fetches Ashaya, Soul of the Wild
+T4: board: Brushland, Survival of the Fittest, Yavimaya, Cradle of Growth, Mayor Tong of Chin Village, Branchloft Pathway, Shang-Chi, Master of Kung Fu, Dryad Arbor, Captain Sisay
+T5: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via Natural Order, Hope Tender via Green Sun's Zenith, Gaea's Cradle via Sisay
+
+===== game 35: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Nykthos, Shrine to Nyx, Avacyn's Pilgrim, Emerald Charm, Scryb Ranger, Verdant Catacombs, Thousand-Year Elixir, Nature's Chosen
+T1: play Verdant Catacombs, fetch Savannah
+T1: cast Avacyn's Pilgrim
+T1: board: Savannah, Avacyn's Pilgrim
+T2: play Marsh Flats, fetch Temple Garden
+T2: cast Thousand-Year Elixir
+T2: board: Savannah, Avacyn's Pilgrim, Temple Garden, Thousand-Year Elixir
+T3: play Nykthos, Shrine to Nyx
+T3: cast Captain Sisay
+T3: Sisay fetches Ashaya, Soul of the Wild
+T3: board: Savannah, Avacyn's Pilgrim, Temple Garden, Thousand-Year Elixir, Nykthos, Shrine to Nyx, Captain Sisay
+T4: play Gaea's Cradle
+T4: cast Ashaya, Soul of the Wild
+T4: cast Scryb Ranger
+T4: cast Marvin, Murderous Mimic
+T4: board: Savannah, Avacyn's Pilgrim, Temple Garden, Thousand-Year Elixir, Nykthos, Shrine to Nyx, Captain Sisay, Gaea's Cradle, Ashaya, Soul of the Wild, Scryb Ranger, Marvin, Murderous Mimic
+T5: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via Chord of Calling, - via battlefield
+
+===== game 36: win T5 via Ashaya+Quirion+Selvala
+T0: opening hand: Utopia Sprawl, Swords to Plowshares, City of Brass, Scryb Ranger, Llanowar Elves, Savannah, Toph, the Blind Bandit
+T1: play Misty Rainforest, fetch Temple Garden
+T1: cast Utopia Sprawl
+T1: cast Llanowar Elves
+T1: board: Temple Garden, Utopia Sprawl, Llanowar Elves
+T2: play City of Brass
+T2: cast Captain Sisay
+T2: board: Temple Garden, Utopia Sprawl, Llanowar Elves, City of Brass, Captain Sisay
+T3: play Arid Mesa, fetch Forest
+T3: cast Scryb Ranger
+T3: cast Toph, the Blind Bandit
+T3: Sisay fetches Ashaya, Soul of the Wild
+T3: board: Temple Garden, Utopia Sprawl, Llanowar Elves, City of Brass, Captain Sisay, Forest, Scryb Ranger, Toph, the Blind Bandit
+T4: play Savannah
+T4: cast Ashaya, Soul of the Wild
+T4: Sisay fetches Selvala, Heart of the Wilds
+T4: board: Temple Garden, Utopia Sprawl, Llanowar Elves, City of Brass, Captain Sisay, Forest, Scryb Ranger, Toph, the Blind Bandit, Savannah, Ashaya, Soul of the Wild
+T5: WIN with Ashaya+Quirion+Selvala (land: Talon Gates of Madara): - via battlefield, Quirion Ranger via Chord of Calling, Selvala, Heart of the Wilds via hand, Shang-Chi, Master of Kung Fu via Sisay
+
+===== game 37: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Plains, Verdant Touch, Temple Garden, Nature's Chosen, Voyaging Satyr, City of Brass, Survival of the Fittest
+T1: play Temple Garden
+T1: cast Survival of the Fittest
+T1: board: Temple Garden, Survival of the Fittest
+T2: play Plains
+T2: cast Voyaging Satyr
+T2: board: Temple Garden, Survival of the Fittest, Plains, Voyaging Satyr
+T3: play City of Brass
+T3: cast Captain Sisay
+T3: board: Temple Garden, Survival of the Fittest, Plains, Voyaging Satyr, City of Brass, Captain Sisay
+T4: cast Once Upon a Time
+T4: Once Upon a Time finds Hope Tender
+T4: cast Hope Tender
+T4: Sisay fetches Ashaya, Soul of the Wild
+T4: board: Temple Garden, Survival of the Fittest, Plains, Voyaging Satyr, City of Brass, Captain Sisay, Hope Tender
+T5: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via Sisay
+
+===== game 38: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Eladamri's Call, Boseiju, Who Endures, Temple Garden, Horizon Canopy, Finale of Devastation, Avacyn's Pilgrim, Cavern of Souls
+T1: play Temple Garden
+T1: cast Avacyn's Pilgrim
+T1: board: Temple Garden, Avacyn's Pilgrim
+T2: play Boseiju, Who Endures
+T2: cast Captain Sisay
+T2: board: Temple Garden, Avacyn's Pilgrim, Boseiju, Who Endures, Captain Sisay
+T3: play Horizon Canopy
+T3: cast Eladamri's Call
+T3: Eladamri's Call -> Ashaya, Soul of the Wild
+T3: Sisay fetches Gaea's Cradle
+T3: board: Temple Garden, Avacyn's Pilgrim, Boseiju, Who Endures, Captain Sisay, Horizon Canopy
+T4: play Gaea's Cradle
+T4: cast Ashaya, Soul of the Wild
+T4: Sisay fetches Nykthos, Shrine to Nyx
+T4: cast Worldly Tutor
+T4: Worldly Tutor stacks Hope Tender
+T4: board: Temple Garden, Avacyn's Pilgrim, Boseiju, Who Endures, Captain Sisay, Horizon Canopy, Gaea's Cradle, Ashaya, Soul of the Wild
+T5: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via hand, - via battlefield, Shang-Chi, Master of Kung Fu via Sisay
+
+===== game 39: win T5 via Ashaya+Hope+Cradle
+T0: opening hand: Avacyn's Pilgrim, Jennifer Walters, Elvish Mystic, Temple Garden, Veil of Summer, Branchloft Pathway, Green Sun's Zenith
+T1: play Temple Garden
+T1: cast Elvish Mystic
+T1: board: Temple Garden, Elvish Mystic
+T2: play Branchloft Pathway
+T2: cast Avacyn's Pilgrim
+T2: board: Temple Garden, Elvish Mystic, Branchloft Pathway, Avacyn's Pilgrim
+T3: play Gemstone Caverns
+T3: cast Llanowar Elves
+T3: cast Captain Sisay
+T3: board: Temple Garden, Elvish Mystic, Branchloft Pathway, Avacyn's Pilgrim, Gemstone Caverns, Llanowar Elves, Captain Sisay
+T4: play Boseiju, Who Endures
+T4: cast Green Sun's Zenith
+T4: GSZ -> Ashaya, Soul of the Wild
+T4: Sisay fetches Gaea's Cradle
+T4: board: Temple Garden, Elvish Mystic, Branchloft Pathway, Avacyn's Pilgrim, Gemstone Caverns, Llanowar Elves, Captain Sisay, Boseiju, Who Endures, Ashaya, Soul of the Wild
+T5: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via Chord of Calling, Gaea's Cradle via hand, Shang-Chi, Master of Kung Fu via Sisay
+
+===== game 40: win T6 via Ashaya+Hope+Cradle
+T0: opening hand: Sylvan Tutor, Ashaya, Soul of the Wild, Yavimaya, Cradle of Growth, Boromir, Warden of the Tower, Arid Mesa, Fal'Cie Paradise, Forest
+T1: play Arid Mesa, fetch Savannah
+T1: board: Savannah
+T2: play Yavimaya, Cradle of Growth
+T2: board: Savannah, Yavimaya, Cradle of Growth
+T3: play Forest
+T3: cast Formidable Speaker
+T3: Formidable Speaker discards Boromir, Warden of the Tower, finds Hope Tender
+T3: board: Savannah, Yavimaya, Cradle of Growth, Forest, Formidable Speaker
+T4: play Talon Gates of Madara
+T4: cast Captain Sisay
+T4: board: Savannah, Yavimaya, Cradle of Growth, Forest, Formidable Speaker, Talon Gates of Madara, Captain Sisay
+T5: cast Hope Tender
+T5: Sisay fetches Gaea's Cradle
+T5: board: Savannah, Yavimaya, Cradle of Growth, Forest, Formidable Speaker, Talon Gates of Madara, Captain Sisay, Hope Tender
+T6: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via hand
+

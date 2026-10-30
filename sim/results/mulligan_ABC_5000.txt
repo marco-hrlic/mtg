@@ -1,0 +1,26 @@
+5000 games per policy, seed 1, 6 turns, Carpet islands=0, on the play
+
+policy               keep 7/6/5/4 %            Sisay<=T2          1st act<=T3              inf<=T4
+A heuristic               81/14/4/1  23.5% [22.4%-24.7%]  29.5% [28.2%-30.8%]  21.0% [19.9%-22.1%]
+B fast Sisay            48/16/22/13  27.3% [26.1%-28.5%]  32.0% [30.7%-33.3%]  20.5% [19.4%-21.6%]
+C Cradle-first           62/21/13/4  22.8% [21.6%-24.0%]  27.8% [26.5%-29.0%]  20.4% [19.3%-21.5%]
+
+policy                     lethal<=T3           lethal<=T4        protected<=T4  white %  utility  mulls
+A heuristic          0.7% [0.5%-0.9%]  20.6% [19.5%-21.8%]     2.9% [2.5%-3.4%]    9.1%    0.133   0.69
+B fast Sisay         0.7% [0.5%-1.0%]  20.3% [19.2%-21.5%]     2.9% [2.5%-3.4%]    6.5%    0.131   1.72
+C Cradle-first       0.7% [0.5%-1.0%]  20.1% [19.0%-21.2%]     3.0% [2.6%-3.6%]    8.2%    0.131   1.20
+
+utility = 1.0*P(protected lethal<=T4) + 0.35*P(lethal<=T4) + 0.15*P(infinite<=T4)
+white % = games without a T4 lethal where an Emiel/Flash piece sat in hand short of W
+
+Primary reason there was no lethal by T4 (share of all games)
+  reason                                 A       B       C
+  Sisay too late                     12.3%   17.1%   16.6%
+  missing white                       9.1%    6.5%    8.2%
+  no engine (Ashaya/Emiel)            6.8%    5.9%    6.5%
+  no haste                            5.4%    5.3%    4.9%
+  no mana source (Cradle)             9.9%    9.0%    9.1%
+  no outlet                           0.3%    0.2%    0.3%
+  no untapper                        19.4%   20.6%   19.0%
+  pieces in hand, not castable        7.2%    6.7%    7.0%
+  short on mana                       8.9%    8.5%    8.4%

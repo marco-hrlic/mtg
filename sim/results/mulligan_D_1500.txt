@@ -1,0 +1,24 @@
+1500 games per policy, seed 1, 6 turns, Carpet islands=0, on the play
+
+policy               keep 7/6/5/4 %            Sisay<=T2          1st act<=T3              inf<=T4
+D rollout               41/24/15/20  24.5% [22.4%-26.7%]  31.5% [29.2%-33.9%]  26.6% [24.4%-28.9%]
+
+policy                     lethal<=T3           lethal<=T4        protected<=T4  white %  utility  mulls
+D rollout            1.1% [0.7%-1.7%]  26.0% [23.8%-28.3%]     4.3% [3.4%-5.4%]    5.1%    0.174   1.91
+
+utility = 1.0*P(protected lethal<=T4) + 0.35*P(lethal<=T4) + 0.15*P(infinite<=T4)
+white % = games without a T4 lethal where an Emiel/Flash piece sat in hand short of W
+
+Primary reason there was no lethal by T4 (share of all games)
+  reason                                 D
+  Sisay too late                     20.9%
+  missing white                       5.1%
+  no engine (Ashaya/Emiel)            5.8%
+  no haste                            4.0%
+  no mana source (Cradle)             7.3%
+  no outlet                           0.6%
+  no untapper                        17.5%
+  pieces in hand, not castable        5.8%
+  short on mana                       7.0%
+
+Policy D calibration: value of mulliganing to k cards: V[4]=0.036, V[5]=0.079, V[6]=0.120, V[7]=0.196

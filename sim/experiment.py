@@ -121,7 +121,7 @@ def report(all_runs, args):
 def sample_hands(deck, args):
     """Show the same seven-card openers to every policy."""
     pols = {k: make_policy(k, deck, args) for k in args.policies}
-    print(f"{'#':>2s}  hand" + " " * 70 + "  " + "  ".join(f"{k:>6s}" for k in args.policies) + "   D keep/mull")
+    print(f"{'#':>2s}  " + "  ".join(f"{k:>6s}" for k in args.policies) + "   D: keep est vs mulligan value   hand")
     flashy_worse, dull_better = [], []
     for i in range(args.hands):
         g = Game(deck, random.Random(args.seed * 7919 + i), max_turns=TURNS)
@@ -136,7 +136,7 @@ def sample_hands(deck, args):
         if d:
             _, _, est, mull, _ = d.decisions[-1]
         tail = f"   {est:.3f} vs {mull:.3f}" if est is not None else ""
-        print(f"{i + 1:2d}  {names[:74]:74s}  " + "  ".join(f"{x:>6s}" for x in decisions) + tail)
+        print(f"{i + 1:2d}  " + "  ".join(f"{x:>6s}" for x in decisions) + f"{tail:>32s}   {names}")
         if est is not None:
             f = features(hand)
             if f["cradle"] and est < mull:
