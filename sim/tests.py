@@ -126,12 +126,74 @@ case("Vitalize cannot untap a non-creature Cradle (no engine) -> no", False, lam
 # --- Finish ---------------------------------------------------------------------------------
 case("Infinite mana, Kamahl in hand, only 2 attackers -> not lethal", False, lambda: state(
     bf=[("Forest", True), ("Savannah", True), ("Ashaya, Soul of the Wild", True), "Hope Tender", ("Gaea's Cradle", True),
-        "Llanowar Elves", (SISAY, True), "Concordant Crossroads"],
+        "Llanowar Elves", (SISAY, True), "Thousand-Year Elixir"],
     hand=["Kamahl, Fist of Krosa"], library=[]))
 case("...same board, one more land held since turn start -> lethal", True, lambda: state(
     bf=["Forest", ("Savannah", True), ("Ashaya, Soul of the Wild", True), "Hope Tender", ("Gaea's Cradle", True),
+        "Llanowar Elves", (SISAY, True), "Thousand-Year Elixir"],
+    hand=["Kamahl, Fist of Krosa"], library=[]))
+case("...same 2-body board but Concordant Crossroads: animated lands have haste -> lethal", True, lambda: state(
+    bf=[("Forest", True), ("Savannah", True), ("Ashaya, Soul of the Wild", True), "Hope Tender", ("Gaea's Cradle", True),
         "Llanowar Elves", (SISAY, True), "Concordant Crossroads"],
     hand=["Kamahl, Fist of Krosa"], library=[]))
+
+# --- First-activation brief (D4) --------------------------------------------------------------
+def _first_act(land_drop, fetch):
+    """Sisay active, two dorks, Cradle and Selvala in library, no haste source. Returns mana after the fetch."""
+    g = state(bf=["Forest", "Savannah", "Temple Garden", "Llanowar Elves", "Birds of Paradise", SISAY],
+              land_drop=land_drop, library=["Gaea's Cradle", "Selvala, Heart of the Wilds", "Kamahl, Fist of Krosa"])
+    g.perm(SISAY).tapped = True
+    got = g.search(fetch)
+    g.hand.append(got)
+    if got.is_("land"):
+        if g.land_drop:
+            g.play_land(got)
+    else:
+        g.hand.append(got)
+        if g.can_pay(got.cost):
+            g.cast(got)
+    return len(g.all_units())
+
+CASES.append(("D4.1 fetch Cradle with land drop: Sisay + 2 dorks -> Cradle taps for 3 (5 -> 8 mana)",
+              True, lambda: _first_act(True, "Gaea's Cradle") == 8))
+CASES.append(("D4.1 fetch Selvala instead: cast her, she is summoning sick -> 0 extra mana",
+              True, lambda: _first_act(True, "Selvala, Heart of the Wilds") == 2))
+CASES.append(("D4.2 fetch Cradle with land drop spent: stranded in hand -> still 5 mana",
+              True, lambda: _first_act(False, "Gaea's Cradle") == 5))
+case("D4.3 Emiel+Flash+Selvala at P=4 (Emiel) -> mana-neutral, not infinite", False, lambda: state(
+    bf=LANDS3 + ["Emiel the Blessed", "Flash Thompson, Spider-Fan", "Selvala, Heart of the Wilds", SISAY]))
+case("D4.4 same with P=5 via Ashaya -> infinite, Flash re-buys Sisay -> win", True, lambda: state(
+    bf=LANDS3 + ["Emiel the Blessed", "Flash Thompson, Spider-Fan", "Selvala, Heart of the Wilds", SISAY,
+                 "Ashaya, Soul of the Wild"]))
+case("D4.6 Emiel+Flash + unanimated Cradle, nothing to animate it -> no", False, lambda: state(
+    bf=LANDS3 + ["Emiel the Blessed", "Flash Thompson, Spider-Fan", "Gaea's Cradle", "Llanowar Elves",
+                 "Birds of Paradise", SISAY], library=["Selvala, Heart of the Wilds"]))
+case("D4.6b ...but Kamahl in library: Sisay finds him, {G} animates the old Cradle (no haste needed) -> win",
+     True, lambda: state(
+    bf=LANDS3 + ["Emiel the Blessed", "Flash Thompson, Spider-Fan", "Gaea's Cradle", "Llanowar Elves",
+                 "Birds of Paradise", SISAY], library=["Kamahl, Fist of Krosa"]))
+case("D4.7 Toph in library: Sisay fetches, earthbend animates a fresh Cradle with haste -> win", True, lambda: state(
+    bf=["Forest", "Savannah", "Temple Garden", "Plains", "Brushland", "Emiel the Blessed",
+        "Flash Thompson, Spider-Fan", ("Gaea's Cradle", True), "Llanowar Elves", "Birds of Paradise", SISAY],
+    library=["Toph, the Blind Bandit", "Kamahl, Fist of Krosa"]))
+case("D4.8 Ashaya does not animate Cradle: Emiel+Flash+Ashaya+Cradle, no untapper -> no", False, lambda: state(
+    bf=["Forest", "Savannah", "Emiel the Blessed", "Flash Thompson, Spider-Fan", "Gaea's Cradle",
+        "Ashaya, Soul of the Wild", "Llanowar Elves", SISAY], library=["Selvala, Heart of the Wilds"]))
+case("D4.12 Flash does not cure summoning sickness: Emiel+Flash+fresh Fanatic -> no", False, lambda: state(
+    bf=LANDS3 + ["Emiel the Blessed", "Flash Thompson, Spider-Fan", ("Fanatic of Rhonas", True), SISAY]))
+case("D4.13 Shang-Chi: fresh Fanatic can tap (ability haste) -> win", True, lambda: state(
+    bf=LANDS3 + ["Emiel the Blessed", "Flash Thompson, Spider-Fan", ("Fanatic of Rhonas", True), SISAY,
+                 "Shang-Chi, Master of Kung Fu"]))
+CASES.append(("D4.13 Shang-Chi does not let fresh creatures attack", True, lambda: state(
+    bf=[("Forest", True), ("Savannah", True), ("Llanowar Elves", True), ("Birds of Paradise", True),
+        "Shang-Chi, Master of Kung Fu"]).attackers() == 1))
+case("D4.14 Emiel+Flash+active Fanatic: positive loop, Selvala not needed -> win", True, lambda: state(
+    bf=LANDS3 + ["Emiel the Blessed", "Flash Thompson, Spider-Fan", "Fanatic of Rhonas", SISAY],
+    library=["Kamahl, Fist of Krosa"]))
+case("D4.15 land drop spent but Crop Rotation puts Cradle onto the battlefield -> win", True, lambda: state(
+    bf=["Forest", "Savannah", "Temple Garden", "Ashaya, Soul of the Wild", "Hope Tender", "Llanowar Elves", SISAY],
+    hand=["Crop Rotation"], land_drop=False, library=["Gaea's Cradle", "Kamahl, Fist of Krosa"]))
+
 case("Kamahl exiled (not in library/hand), Sisay untapped -> infinite but no lethal", False, lambda: _no_kamahl())
 case("Finale in hand replaces Kamahl -> win", True, lambda: _no_kamahl(finale=True))
 
@@ -153,10 +215,11 @@ def main():
     failed = 0
     for name, expect, build in CASES:
         g = build()
-        got = wins(g)
+        got = g if isinstance(g, bool) else wins(g)
         ok = got == expect
         failed += not ok
-        print(f"  {'ok  ' if ok else 'FAIL'} {name}" + ("" if ok else f"  (got {got}, infinite={infinite(g)})"))
+        extra = "" if ok or isinstance(g, bool) else f"  (got {got}, infinite={infinite(g)})"
+        print(f"  {'ok  ' if ok else 'FAIL'} {name}" + extra)
     print(f"\n{len(CASES) - failed}/{len(CASES)} passed")
     sys.exit(1 if failed else 0)
 

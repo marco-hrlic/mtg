@@ -147,7 +147,7 @@ CARDS = [
     C("Mayor Tong of Chin Village", "creature", "1W"),
     C("Voice of Victory", "creature", "1W"),
     C("Jennifer Walters", "creature", "1GW", leg=True, power=2),
-    C("Toph, the Blind Bandit", "creature", "2G", leg=True),
+    C("Toph, the Blind Bandit", "creature", "2G", leg=True, tags="toph"),
     C("Quirion Ranger", "creature", "G", tags="elf"),
     C("Scryb Ranger", "creature", "1G"),
     # --- enchantments ---
@@ -155,7 +155,7 @@ CARDS = [
     C("Survival of the Fittest", "enchantment", "G", tags="survival"),
     C("Utopia Sprawl", "enchantment", "G", mana="A", tags="aura"),
     C("Wild Growth", "enchantment", "G", mana="G", tags="aura"),
-    C("Nature's Chosen", "enchantment", "G", tags="dead"),
+    C("Nature's Chosen", "enchantment", "G", tags="chosen"),
     C("Animate Land", "instant", "G", tags="dead"),
     C("Verdant Touch", "sorcery", "1G", tags="dead"),
     C("Fal'Cie Paradise", "enchantment", "G", tags="carpet"),

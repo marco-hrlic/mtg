@@ -46,6 +46,8 @@ YAVIMAYA = "Yavimaya, Cradle of Growth"
 ANIMATE = "Animate Land"
 VTOUCH = "Verdant Touch"
 SHANG = "Shang-Chi, Master of Kung Fu"
+TOPH = "Toph, the Blind Bandit"
+CHOSEN = "Nature's Chosen"
 HASTE_SOURCES = ("Concordant Crossroads", "Thousand-Year Elixir", "Shang-Chi, Master of Kung Fu")
 GREAVES = "Lightning Greaves"
 
@@ -153,6 +155,9 @@ LINES = [
          lambda c: c["creatures"] + 1 >= 4 and (not c["cradle_fresh"] or c["haste"]), untaps_sisay=True),
     Line("Emiel+Flash+Cradle+Cub", (EMIEL, FLASH, CRADLE, CUB), (), (3, 0, 0), "mana",
          lambda c: c["creatures"] + 2 >= 4, untaps_sisay=True),
+    # Toph's earthbend 2 animates Cradle with haste (legendary, so Sisay can find the animator).
+    Line("Emiel+Flash+Cradle+Toph", (EMIEL, FLASH, CRADLE, TOPH), (), (3, 0, 0), "mana",
+         lambda c: c["creatures"] + 1 >= 4, untaps_sisay=True),
     # Emiel + Flash + a land-untapper: Flash untaps the creature, the creature untaps Cradle / Nykthos.
     Line("Emiel+Flash+Satyr+Cradle", (EMIEL, FLASH, SATYR, CRADLE), (SATYR,), (3, 0, 0), "mana",
          lambda c: c["creatures"] >= 4, untaps_sisay=True),
@@ -324,6 +329,9 @@ class Game:
                 u = []
             if u and self.on_bf(CUB):
                 u = u + ["G"]
+            chosen = self.perm(CHOSEN)
+            if u and chosen is not None and chosen.choice is p.card.name:
+                u = u * 2  # Nature's Chosen: {0} untap once each turn on your turn -> a second tap
             return u
         if c.is_("land"):
             if c.has("cradle"):
@@ -468,6 +476,15 @@ class Game:
                     self.hand.append(self.search(target.name))
                     self.shuffle()
                     self.log(f"Formidable Speaker discards {discard.name}, finds {target.name}")
+        elif c.name == CHOSEN:
+            best = None
+            for q in self.creatures():
+                units = len(self.units_of(q, ignore_tapped=True))
+                if units and (best is None or units > best[0]):
+                    best = (units, q.card.name)
+            if best:
+                p.choice = best[1]
+                self.log(f"Nature's Chosen enchants {best[1]}")
         elif c.name == RANGERCAP:
             target = self._tutor_target(lambda k: k.is_("creature") and not k.is_("land") and k.mv <= 1)
             if target:
@@ -971,6 +988,8 @@ class Game:
         if line.tappers:
             add(list(HASTE_SOURCES))
         add(["Survival of the Fittest", "Knight of the Reliquary", SELVALA, ASHAYA, HOPE, MAGUS])
+        if any(len(self.units_of(q, ignore_tapped=True)) >= 2 for q in self.creatures()):
+            add([CHOSEN])  # worth a slot only on a creature that taps for 2+
         # tutors toward the missing pieces
         add(["Natural Order", "Green Sun's Zenith", "Nature's Rhythm", "Chord of Calling", "Eldritch Evolution",
              "Eladamri's Call", "Sylvan Scrying", "Once Upon a Time", SPEAKER, RANGERCAP])
@@ -1081,26 +1100,43 @@ class Game:
             return True
         return False
 
+    def default_sisay_target(self):
+        """The pilot's own choice: the missing legendary piece of the closest line, else a staple."""
+        lib = {c.name: c for c in self.library}
+        for _, _, miss in self.lines_by_distance():
+            target = next((m for m in miss if m in lib and lib[m].legendary), None)
+            if target:
+                return target
+        for m in (KAMAHL, ASHAYA, CRADLE, SELVALA, NYKTHOS, EMIEL):
+            if m in lib and not self.in_hand(m):
+                return m
+        return None
+
+    def sisay_fetch(self):
+        """Activate Sisay if she can: forced target (experiment) or the pilot's default."""
+        if not self._sisay_ok():
+            return False
+        lib = {c.name: c for c in self.library}
+        forced = getattr(self, "forced_target", None)
+        if forced is not None and "sisay_act" not in self.ms:
+            target = forced if forced in lib else None
+            self.forced_target = None
+            if target is None:
+                target = self.default_sisay_target()
+        else:
+            target = self.default_sisay_target()
+        if not target:
+            return False
+        self.perm(SISAY).tapped = True
+        self.hand.append(self.search(target))
+        self.mark("sisay_act")
+        self.sisay_acts_turn += 1
+        self.log(f"Sisay fetches {target}")
+        return True
+
     def end_step(self):
         line, missing = self.closest_line()
-        lib = {c.name: c for c in self.library}
-        if self._sisay_ok():
-            target = None
-            for _, _, miss in self.lines_by_distance():
-                target = next((m for m in miss if m in lib and lib[m].legendary), None)
-                if target:
-                    break
-            if target is None:
-                for m in (KAMAHL, ASHAYA, CRADLE, SELVALA, NYKTHOS, EMIEL):
-                    if m in lib and not self.in_hand(m):
-                        target = m
-                        break
-            if target:
-                self.perm(SISAY).tapped = True
-                self.hand.append(self.search(target))
-                self.mark("sisay_act")
-                self.sisay_acts_turn += 1
-                self.log(f"Sisay fetches {target}")
+        self.sisay_fetch()  # Sisay that became active during the turn (cast with a haste source)
         # Worldly / Sylvan Tutor: stack the top for next turn
         for t in ("Worldly Tutor", "Sylvan Tutor"):
             card = self.hand_card(t)
@@ -1132,11 +1168,14 @@ class Game:
     def attackers(self, entering=()):
         """Bodies that can attack this turn once Kamahl animates lands: lands and creatures controlled
         since the turn began. The loop itself untaps them. Lethal at a 4-player table needs 3."""
+        crossroads = self.on_bf("Concordant Crossroads")  # all creatures have haste, animated lands included
+        finale = getattr(self, "_last_outlet", "") or ""
+        finale = finale.startswith("Finale")                # creatures (not lands animated later) gain haste
         n = 0
         for p in self.bf:
-            if p.card.is_("land") and not p.sick:
+            if p.card.is_("land") and (not p.sick or crossroads):
                 n += 1
-            elif p.card.is_("creature") and not p.sick:
+            elif p.card.is_("creature") and (not p.sick or crossroads or finale):
                 n += 1
         return n
 
@@ -1232,32 +1271,59 @@ class Game:
                 self.hand.remove(exile)
                 self.enter(cav)
                 self.log(f"Gemstone Caverns starts in play, exiling {exile.name}")
-        for _ in range(self.max_turns):
-            self.turn += 1
-            self.sisay_acts_turn = 0
-            self.carpet_used = False
-            for p in self.bf:
-                p.sick = False
-                if not p.card.has("vault"):
-                    p.tapped = False
-            self.floating = []
-            self.land_drop = True
-            self.draw()
-            if self.try_win():
+        while self.turn < self.max_turns:
+            if self._turn():
                 return self.result
-            self.develop()
-            if self.try_win():
+        return self.result
+
+    def _turn(self):
+        """One full turn. Returns True when the game is over (win)."""
+        self.turn += 1
+        self.sisay_acts_turn = 0
+        self.carpet_used = False
+        for p in self.bf:
+            p.sick = False
+            if not p.card.has("vault"):
+                p.tapped = False
+        self.floating = []
+        self.land_drop = True
+        self.draw()
+        if self.try_win():
+            return True
+        # First main phase: an active Sisay tutors now, so a fetched land can be this turn's drop and a
+        # fetched creature can be cast this turn.
+        if self._sisay_ok() and self.default_sisay_target() is not None:
+            hook = getattr(self, "first_activation_hook", None)
+            if hook is not None and "sisay_act" not in self.ms:
+                hook(self)  # may set forced_target, or raise to freeze the game here
+            self.sisay_fetch()
+        return self._rest_of_turn()
+
+    def _rest_of_turn(self):
+        self.develop()
+        if self.try_win():
+            return True
+        self.end_step()
+        cradle = self.perm(CRADLE)
+        if cradle and len(self.creatures()) >= 3:
+            self.mark("cradle3")
+        if self.sisay_acts_turn >= 2:
+            self.mark("sisay_x2")
+        if self.turn == 4 and self.result["fail"] is None:
+            self.result["fail"] = self.diagnose()
+        if self.log_on:
+            self.log("board: " + ", ".join(p.card.name for p in self.bf))
+        return False
+
+    def resume(self):
+        """Continue a game frozen at its first Sisay activation (see first_tutor.py)."""
+        self.first_activation_hook = None
+        self.sisay_fetch()
+        if self._rest_of_turn():
+            return self.result
+        while self.turn < self.max_turns:
+            if self._turn():
                 return self.result
-            self.end_step()
-            cradle = self.perm(CRADLE)
-            if cradle and len(self.creatures()) >= 3:
-                self.mark("cradle3")
-            if self.sisay_acts_turn >= 2:
-                self.mark("sisay_x2")
-            if self.turn == 4 and self.result["fail"] is None:
-                self.result["fail"] = self.diagnose()
-            if self.log_on:
-                self.log("board: " + ", ".join(p.card.name for p in self.bf))
         return self.result
 
     def diagnose(self):
