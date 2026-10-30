@@ -359,6 +359,7 @@ def main():
     ap.add_argument("--divergences", type=int, default=0, help="print N traces where cradle/selvala disagree")
     ap.add_argument("--deck", default=os.path.join(HERE, "decklist.txt"))
     ap.add_argument("--jobs", type=int, default=os.cpu_count())
+    ap.add_argument("--dump", default="", help="write per-state rows as JSON here for further analysis")
     args = ap.parse_args()
     deck = load_decklist(args.deck)
 
@@ -370,6 +371,10 @@ def main():
     print(f"Games played: {played}; games reaching a first activation by T{TURNS}: {len(states)} "
           f"({len(states) / played:.0%})")
     report(rows, args)
+    if args.dump:
+        import json
+        with open(args.dump, "w") as fh:
+            json.dump(rows, fh)
     if args.divergences:
         divergences(states, rows, args)
 

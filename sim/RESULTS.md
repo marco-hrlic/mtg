@@ -73,7 +73,7 @@ With a haste source in play, blink the mana creature itself and skip Flash.
 ### Finish
 
 Infinite mana → Sisay (untapped or re-bought each pass) → **Kamahl, Fist of Krosa**: {G} per land makes
-it a 1/1 with haste, then {2}{G}{G}{G} for +3/+3 and trample as often as needed. Lethal is credited
+it a 1/1 (no haste), then {2}{G}{G}{G} for +3/+3 and trample as often as needed. Lethal is credited
 only with **3 bodies controlled since the turn began** (one per opponent) and Kamahl castable or in play.
 **Finale of Devastation** for X ≥ 10 is the only other finisher. Walking Ballista was tested and
 excluded per the brief.

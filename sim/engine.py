@@ -438,9 +438,12 @@ class Game:
                 self.hand.append(self.library.pop())
 
     def search(self, name):
+        """Take a card from the library, then shuffle (every search effect in the deck shuffles)."""
         for i, c in enumerate(self.library):
             if c.name == name:
-                return self.library.pop(i)
+                got = self.library.pop(i)
+                self.shuffle()
+                return got
         return None
 
     def shuffle(self):
