@@ -256,8 +256,12 @@ live.
 - Protected-lethal is a floor: the pilot casts protection last.
 - The `selvala` arm's 100% "summoning sick" is a property of these states (no haste source ever in play at
   a first activation), not of Selvala.
-- Policy-D (rollout mulligan) states: run in progress at the time of writing; the A-policy results above
-  are the reference.
+- **Policy-D (rollout mulligan) states** (800 games → 421 states, 44% of them T3 activations because D
+  mulligans harder): the ordering holds and the gaps widen. Cohort n = 361: cradle − selvala **+10.2**
+  [+6.2, +14.3]; rule2 − cradle +3.3 [−0.0, +6.7]; lookahead − cradle +9.1; lookahead − rule2 +5.8.
+  Lethal ≤T4 over all D states: current 27.3%, cradle 25.9%, selvala 16.3%, rule2 28.3%, lookahead 34.2%.
+  Selection bias runs the expected way: hands kept by D hold more engine pieces, so the "untapper already
+  held → Cradle" branch fires more often and Selvala-first costs more.
 
 ---
 
