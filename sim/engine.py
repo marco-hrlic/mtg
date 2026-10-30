@@ -188,9 +188,21 @@ class Perm:
         self.choice = None
 
 
+PROTECTION_BF = ("Grand Abolisher", "Voice of Victory", "Jennifer Walters", "Boromir, Warden of the Tower",
+                 "Ranger-Captain of Eos")
+PROTECTION_HAND = {"Silence": (0, 0, 1), "Veil of Summer": (0, 1, 0)}
+BURST = {"Vitalize": (0, 1, 0), "Emerald Charm": (0, 1, 0)}
+
+
 class Game:
-    def __init__(self, deck, rng, log=False, max_turns=8):
+    def __init__(self, deck, rng, log=False, max_turns=8, policy=None, islands=0, on_draw=False):
         self.rng = rng
+        self.policy = policy          # mulligan policy object (see mulligan.py); None = built-in heuristic
+        self.islands = islands        # opposing Islands for Carpet of Flowers
+        self.on_draw = on_draw        # not the starting player: Gemstone Caverns may start in play
+        self.carpet_used = False
+        self.sisay_acts_turn = 0
+        self.ms = {}                  # milestones: name -> earliest turn
         self.deck = [c for c in deck if c.name != SISAY]
         self.library = list(self.deck)
         rng.shuffle(self.library)
@@ -206,7 +218,12 @@ class Game:
         self.logs = []
         self.max_turns = max_turns
         self.result = {"win_turn": None, "line": None, "uses": (), "noout_turn": None,
-                       "noout_line": None, "mulligans": 0}
+                       "noout_line": None, "mulligans": 0, "hand_size": 7, "protected": None,
+                       "milestones": self.ms, "fail": None, "spare_mana": 0}
+
+    def mark(self, name):
+        if name not in self.ms:
+            self.ms[name] = self.turn
 
     # ------------------------------------------------------------ utilities
     def log(self, msg):
@@ -323,6 +340,8 @@ class Game:
             return [p.choice] if p.choice else []
         if c.has("aura"):
             return list(c.mana) if self.forest_on() else []
+        if c.name == "Fal'Cie Paradise":  # Carpet of Flowers: X mana of one color, X = opposing Islands
+            return [] if self.carpet_used or self.islands == 0 else ["A"] * self.islands
         return list(c.mana)
 
     def _pref(self, p):
@@ -390,7 +409,9 @@ class Game:
             if id(src) not in touched:
                 continue
             if isinstance(src, Perm):
-                if src.card.has("petal"):
+                if src.card.name == "Fal'Cie Paradise":
+                    self.carpet_used = True
+                elif src.card.has("petal"):
                     self.bf.remove(src)
                     self.gy.append(src.card)
                 else:
@@ -483,6 +504,8 @@ class Game:
             (self.command if from_command else self.hand).append(card)
             return False
         self.spells_cast += 1
+        if card.name == SISAY:
+            self.mark("sisay_cast")
         self.log(f"cast {card.name}")
         if card.is_("instant") or card.is_("sorcery"):
             self.gy.append(card)
@@ -646,7 +669,28 @@ class Game:
                 opts.append(Opt(add_cost(card.cost, (1, 0, 1)), frozenset({"hand:" + RANGERCAP}), card, "Ranger-Captain"))
         return opts
 
-    def _plan_line(self, line, land, base):
+    def burst_bases(self, base):
+        """(units, extra_cost, label) alternatives: plain, then each one-shot untap spell in hand."""
+        out = [(base, ZERO, None)]
+        if self.in_hand("Vitalize"):
+            extra = [u for u, src, _ in self.all_units() if isinstance(src, Perm) and src.card.is_("creature")]
+            tapped = [u for p in self.bf if p.tapped and p.card.is_("creature") for u in self.units_of(p, True)]
+            extra += tapped
+            if len(extra) > 1:
+                out.append((base + extra, (0, 1, 0), "Vitalize"))
+        if self.in_hand("Emerald Charm"):
+            best = []
+            for p in self.bf:
+                u = self.units_of(p, ignore_tapped=True)
+                if p.card.is_("creature") and p.sick and not self.haste_active():
+                    continue
+                if len(u) > len(best):
+                    best = u
+            if len(best) > 1:
+                out.append((base + best, (0, 1, 0), "Emerald Charm"))
+        return out
+
+    def _plan_line(self, line, land, base, extra_cost=ZERO):
         sisay_ok = self._sisay_ok()
         haste_now = self.haste_active()
         nonsick = {p.card.name for p in self.creatures() if not p.sick}
@@ -673,8 +717,8 @@ class Game:
         best = None
         for combo in product(*all_opts):
             uses = set()
-            if land is not None:
-                uses.add("drop")
+            if land is not None or not self.land_drop:
+                uses.add("drop")  # the land drop is spent (or was never available this turn)
             ok = True
             for o in combo:
                 if uses & o.uses:
@@ -710,7 +754,7 @@ class Game:
             }
             if not line.check(ctx):
                 continue
-            cost = add_cost(line.startup, *[o.cost for o in combo])
+            cost = add_cost(line.startup, extra_cost, *[o.cost for o in combo])
             units = list(base)
             if land is not None:
                 units += self._land_units(land, creatures, devotion)
@@ -778,6 +822,9 @@ class Game:
                     break
         return out
 
+    def _burst_label(self, combo):
+        return getattr(self, "_last_burst", None)
+
     def plan_win(self):
         """Return (line, plan, outlet) for the best line completable now, or None."""
         base = [u[0] for u in self.all_units(oneshots=True)]
@@ -789,16 +836,19 @@ class Game:
                     seen.add(c.name)
                     lands.append(c)
         fallback = None
-        for line in LINES:
-            for land in lands:
-                res = self._plan_line(line, land, base)
-                if res is None:
-                    continue
-                _, combo, uses, haste = res
-                if self._outlet(line, uses, haste):
-                    return line, combo, land, True
-                if fallback is None:
-                    fallback = (line, combo, land, False)
+        self._last_burst = None
+        for units, extra, label in self.burst_bases(base):
+            for line in LINES:
+                for land in lands:
+                    res = self._plan_line(line, land, units, extra)
+                    if res is None:
+                        continue
+                    _, combo, uses, haste = res
+                    if self._outlet(line, uses, haste):
+                        self._last_burst = label
+                        return line, combo, land, True
+                    if fallback is None:
+                        fallback = (line, combo, land, False)
         return fallback
 
     # ------------------------------------------------------------ turn structure
@@ -901,6 +951,8 @@ class Game:
         if any(p.card.legendary and p.card.is_("creature") for p in self.bf):
             add(["Mox Amber"])
         add(["Sol Ring", "Mana Vault"])
+        if self.islands:
+            add(["Fal'Cie Paradise"])
         dorks1 = ["Llanowar Elves", "Fyndhorn Elves", "Elvish Mystic", "Birds of Paradise", "Avacyn's Pilgrim"]
         if self.forest_on():
             dorks1 = ["Utopia Sprawl", "Wild Growth", "Arbor Elf"] + dorks1
@@ -1039,6 +1091,8 @@ class Game:
             if target:
                 self.perm(SISAY).tapped = True
                 self.hand.append(self.search(target))
+                self.mark("sisay_act")
+                self.sisay_acts_turn += 1
                 self.log(f"Sisay fetches {target}")
         # Worldly / Sylvan Tutor: stack the top for next turn
         for t in ("Worldly Tutor", "Sylvan Tutor"):
@@ -1068,15 +1122,67 @@ class Game:
             self.hand.remove(c)
             self.gy.append(c)
 
+    def attackers(self, entering=()):
+        """Bodies that can attack this turn once Kamahl animates lands: lands and creatures controlled
+        since the turn began. The loop itself untaps them. Lethal at a 4-player table needs 3."""
+        n = 0
+        for p in self.bf:
+            if p.card.is_("land") and not p.sick:
+                n += 1
+            elif p.card.is_("creature") and not p.sick:
+                n += 1
+        return n
+
+    def protection_ready(self, spare_units):
+        """Protection already on the battlefield, or a one-mana protection spell castable with mana the
+        combo does not need. Goldfish can only say 'ready', not 'resilient'."""
+        if any(self.on_bf(n) for n in PROTECTION_BF):
+            return True
+        for name, cost in PROTECTION_HAND.items():
+            if self.in_hand(name) and feasible(spare_units, cost):
+                return True
+        return False
+
     def try_win(self):
         res = self.plan_win()
         if res is None:
             return False
         line, combo, land, outlet = res
+        if res is not None:
+            self.mark("infinite")
+        if outlet and self.attackers() < 3:
+            outlet = False
+            if self.result["fail"] is None:
+                self.result["fail"] = "attackers"
+            self.log(f"infinite mana via {line.name} but only {self.attackers()} attackers")
         if outlet:
+            self.mark("lethal")
+            base = [u[0] for u in self.all_units(oneshots=True)]
+            cost = add_cost(line.startup, *[o.cost for o in combo])
+            spare = list(base)
+            for col in ("W", "G", "C", "A"):
+                pass
+            # remove the combo's cost from the pool greedily (white first so a spare W is a real W)
+            gen, g, w = cost
+            for need, cols in ((w, ("W", "A")), (g, ("G", "A"))):
+                for _ in range(need):
+                    for c in cols:
+                        if c in spare:
+                            spare.remove(c)
+                            break
+            for _ in range(gen):
+                for c in ("C", "G", "W", "A"):
+                    if c in spare:
+                        spare.remove(c)
+                        break
+            self.result["spare_mana"] = len(spare)
+            self.result["protected"] = self.protection_ready(spare)
+            if self.result["protected"]:
+                self.mark("protected_lethal")
             self.result["win_turn"] = self.turn
             self.result["line"] = line.name
-            self.result["uses"] = tuple(o.how for o in combo if o.how not in ("battlefield",))
+            self.result["uses"] = tuple(o.how for o in combo if o.how not in ("battlefield",)) + (
+                (self._last_burst,) if self._last_burst else ())
             self.result["available"] = tuple(self.available_lines())
             if self.log_on:
                 how = ", ".join(f"{(o.enter.name if o.enter else '-')} via {o.how}" for o in combo)
@@ -1088,11 +1194,38 @@ class Game:
             self.log(f"infinite mana via {line.name} but no outlet")
         return False
 
-    def play(self):
-        self.mulligan()
+    def play_from(self, hand):
+        """Play out a game from a given kept hand; the rest of the deck is the (already shuffled) library."""
+        names = list(hand)
+        self.library = list(self.deck)
+        self.hand = []
+        for c in names:
+            self.library.remove(c)
+            self.hand.append(c)
+        self.rng.shuffle(self.library)
+        return self.play(skip_mulligan=True)
+
+    def play(self, skip_mulligan=False):
+        if skip_mulligan:
+            pass
+        elif self.policy is not None:
+            self.policy.run(self)
+        else:
+            self.mulligan()
+        self.result["hand_size"] = len(self.hand)
         self.log("opening hand: " + ", ".join(c.name for c in self.hand))
+        if self.on_draw:
+            cav = self.hand_card("Gemstone Caverns")
+            exile = self._worst_card(exclude={"Gemstone Caverns"}) if cav else None
+            if cav and exile:
+                self.hand.remove(cav)
+                self.hand.remove(exile)
+                self.enter(cav)
+                self.log(f"Gemstone Caverns starts in play, exiling {exile.name}")
         for _ in range(self.max_turns):
             self.turn += 1
+            self.sisay_acts_turn = 0
+            self.carpet_used = False
             for p in self.bf:
                 p.sick = False
                 if not p.card.has("vault"):
@@ -1106,6 +1239,43 @@ class Game:
             if self.try_win():
                 return self.result
             self.end_step()
+            cradle = self.perm(CRADLE)
+            if cradle and len(self.creatures()) >= 3:
+                self.mark("cradle3")
+            if self.sisay_acts_turn >= 2:
+                self.mark("sisay_x2")
+            if self.turn == 4 and self.result["fail"] is None:
+                self.result["fail"] = self.diagnose()
             if self.log_on:
                 self.log("board: " + ", ".join(p.card.name for p in self.bf))
         return self.result
+
+    def diagnose(self):
+        """Why no lethal by now: first matching reason, checked from the most specific."""
+        bf = {p.card.name for p in self.bf}
+        hand = {c.name for c in self.hand}
+        have = bf | hand
+        if "infinite" in self.ms:
+            return "no outlet"
+        if SISAY not in bf:
+            return "Sisay too late"
+        _, line, missing = self.lines_by_distance()[0]
+        emiel_line = EMIEL in line.pieces
+        if emiel_line and (EMIEL in hand or FLASH in hand):
+            units = [u[0] for u in self.all_units(oneshots=True)]
+            w = units.count("W") + units.count("A")
+            if (EMIEL in hand and w < 2) or (FLASH in hand and w < 1):
+                return "missing white"
+        if ASHAYA not in have and EMIEL not in have:
+            return "no engine (Ashaya/Emiel)"
+        untappers = (HOPE, MAGUS, QUIRION, SCRYB, FLASH, SATYR, ARBOR)
+        if not any(u in have for u in untappers):
+            return "no untapper"
+        if not any(m in have for m in (CRADLE, NYKTHOS, SELVALA, FANATIC, BLOOM, CUB)):
+            return "no mana source (Cradle)"
+        if len(missing) == 0:
+            tapper_sick = any(self.perm(t) and self.perm(t).sick for t in line.tappers) and not self.haste_active()
+            if tapper_sick:
+                return "no haste"
+            return "short on mana"
+        return "pieces in hand, not castable"

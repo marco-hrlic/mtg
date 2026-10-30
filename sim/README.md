@@ -15,6 +15,21 @@ identical shuffles: the difference is the card, not luck. `--add` accepts any ca
 (the list plus the `CANDIDATES` block: Argothian Elder, Devoted Druid, Vizier of Remedies,
 Umbral Mantle, Elvish Reclaimer, Gilded Goose, Walking Ballista, Ezuri, Renegade Leader).
 
+## Mulligan experiment and rules tests
+
+```
+python3 sim/tests.py                                   # golden rulings the planner must honour
+python3 sim/experiment.py --games 5000 --policies A B C   # London-mulligan policies, same seeds
+python3 sim/experiment.py --games 1500 --policies D       # rollout policy (slow: plays rollouts per decision)
+python3 sim/experiment.py --hands 12                      # the same openers shown to every policy
+python3 sim/experiment.py --islands 1 --on-draw           # Carpet of Flowers / Gemstone Caverns scenarios
+```
+
+Milestones recorded per game: Sisay cast, first Sisay activation, Cradle making 3+, two activations in a turn,
+infinite mana, lethal (needs Kamahl or Finale **and** 3 bodies held since the turn began), protection-ready
+lethal (Abolisher/Voice/Walters/Boromir/Ranger-Captain in play, or Silence/Veil castable from spare mana).
+Games without a T4 lethal get one primary failure reason. Policies live in `mulligan.py`.
+
 ## What it does each turn
 1. Draw, then ask the planner whether any combo line can be finished **this turn**: every missing piece needs a route
    (cast from hand, Sisay, GSZ, Chord, Natural Order, Eldritch, Pact, Survival, Knight/Crop Rotation for lands, ...).
@@ -27,6 +42,10 @@ Infinite-mana lines only count as a win when an outlet is reachable (Kamahl, Fin
 Sisay, who Ashaya + Hope Tender/Magus can untap to fetch Kamahl).
 
 ## Simplifications
+- Loop detection is line-based: `engine.LINES` lists each infinite with its pieces, which piece must tap, its
+  startup cost and its condition (creature count, devotion, power, haste, white permanent, fresh Cradle).
+  The planner checks routes, mana, colors, the land drop and haste for that list; it does not derive loops
+  from first principles. `tests.py` pins the rulings; a line not in the list is not credited.
 - No interaction, no opposing stax, no free-spell tax: this is an upper bound on speed.
 - Mana is abstract units (G / W / either / colorless). Fetches find a G/W dual.
 - The pilot is a heuristic, not optimal: it can misspend mana while developing, and it plans only one turn ahead.

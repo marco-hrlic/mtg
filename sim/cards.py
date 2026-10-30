@@ -158,7 +158,7 @@ CARDS = [
     C("Nature's Chosen", "enchantment", "G", tags="dead"),
     C("Animate Land", "instant", "G", tags="dead"),
     C("Verdant Touch", "sorcery", "1G", tags="dead"),
-    C("Fal'Cie Paradise", "enchantment", "G", tags="dead"),
+    C("Fal'Cie Paradise", "enchantment", "G", tags="carpet"),
     # --- tutors ---
     C("Chord of Calling", "instant", "GGG", x=True, tags="tutor chord"),
     C("Green Sun's Zenith", "sorcery", "G", x=True, tags="tutor gsz"),
