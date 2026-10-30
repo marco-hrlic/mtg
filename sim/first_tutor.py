@@ -38,7 +38,7 @@ from mulligan import POLICIES, Rollout, utility  # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 TURNS = 5
 CANDIDATES = (CRADLE, SELVALA, ASHAYA, SHANG, TOPH, EMIEL, FLASH, KAMAHL)
-ARMS = ("current", "cradle", "selvala", "contextual", "lookahead")
+ARMS = ("current", "cradle", "selvala", "contextual", "rule2", "lookahead")
 
 
 class Captured(Exception):
@@ -96,6 +96,7 @@ def snapshot(g):
         "untapper_have": any(x in have for x in (HOPE, MAGUS, QUIRION, SCRYB, FLASH)),
         "cradle_tutor": "Crop Rotation" in hand or "Sylvan Scrying" in hand or "Knight of the Reliquary" in bf,
         "fresh_tappers": fresh_tappers, "haste": g.haste_active(), "cub": CUB in have,
+        "ashaya_have": ASHAYA in have, "tap_untapper_have": bool(tap_untappers) or QUIRION in have or SCRYB in have,
     }
 
 
@@ -133,6 +134,29 @@ def contextual_target(g):
         return CRADLE
     if ASHAYA in lib:
         return ASHAYA
+    return g.default_sisay_target()
+
+
+def rule2_target(g):
+    """Rule fitted to the lookahead's choices (see FIRST_TUTOR_RESULTS.md):
+    Cradle when a nonlegendary untapper is already held; otherwise Ashaya if missing; otherwise Cradle;
+    with Cradle already held, Selvala, then a haste source for sick tappers, then Kamahl."""
+    f = snapshot(g)
+    lib = {c.name for c in g.library}
+    if CRADLE in lib and (f["tap_untapper_have"] or FLASH in {c.name for c in g.hand} | {p.card.name for p in g.bf}):
+        return CRADLE
+    if not f["ashaya_have"] and ASHAYA in lib:
+        return ASHAYA
+    if CRADLE in lib:
+        return CRADLE
+    if f["fresh_tappers"] and not f["haste"] and SHANG in lib:
+        return SHANG
+    if SELVALA in lib:
+        return SELVALA
+    if f["emiel_flash"] and TOPH in lib:
+        return TOPH
+    if KAMAHL in lib:
+        return KAMAHL
     return g.default_sisay_target()
 
 
@@ -176,6 +200,8 @@ def evaluate_state(args):
             target = SELVALA if SELVALA in lib else "n/a"
         elif arm == "contextual":
             target = contextual_target(state)
+        elif arm == "rule2":
+            target = rule2_target(state)
         else:
             target = lookahead_target(state, seed, rollouts)
         if target == "n/a":
@@ -253,8 +279,8 @@ def report(rows, args):
     table(both, arms, "COHORT: both Cradle and Selvala still in the library")
 
     print("\nPaired differences on the cohort, P(lethal<=T4), mean [95% CI]")
-    for a, b in (("cradle", "selvala"), ("contextual", "cradle"), ("lookahead", "cradle"), ("lookahead", "contextual"),
-                 ("current", "cradle")):
+    for a, b in (("cradle", "selvala"), ("contextual", "cradle"), ("rule2", "cradle"), ("rule2", "current"),
+                 ("lookahead", "cradle"), ("lookahead", "rule2"), ("current", "cradle")):
         if a in arms and b in arms:
             (m, lo, hi), n = paired(both, a, b)
             print(f"  {a:11s} - {b:11s}: {m:+.1%} [{lo:+.1%}, {hi:+.1%}]  n={n}")
@@ -268,7 +294,7 @@ def report(rows, args):
             print(f"  {arm:12s} stranded {sum(1 for x in avail if x['stranded']) / len(avail):6.1%}   "
                   f"Selvala sick {sum(1 for x in avail if x['selvala_sick']) / len(avail):6.1%}")
 
-    for arm in ("current", "contextual", "lookahead"):
+    for arm in ("current", "contextual", "rule2", "lookahead"):
         if arm in arms:
             dist = Counter(r[arm]["fetched"] for r in rows if r[arm] is not None)
             print(f"\nWhat `{arm}` fetched: " + ", ".join(f"{k}: {v / len(rows):.0%}" for k, v in dist.most_common()))

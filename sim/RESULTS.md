@@ -5,6 +5,12 @@ how often and how fast they assemble, which cards carry the deck, and which Lond
 produces the most turn-4 wins. All numbers come from `sim/` in this repository; raw outputs are in
 `sim/results/`.
 
+> **Update (first-activation study).** After this report the pilot was changed to activate Sisay in the
+> first main phase instead of the end step, and every library search now shuffles. Baseline goldfish
+> speed rose to 21.9% lethal by T4 and 63.5% by T5 (20,000 games); mulligan policies A/B/C re-ran at
+> 23.1% / 23.5% / 22.2% lethal by T4 and remain indistinguishable. The failure ranking is unchanged.
+> See `FIRST_TUTOR_RESULTS.md` for the Cradle-vs-Selvala counterfactual and the updated numbers.
+
 **Read this first.** Everything here is an upper bound on speed and a floor on protection. Nobody
 interacts with the deck, the pilot is a heuristic that plans one turn ahead, and "protected" only
 means a protection piece was in play or castable from spare mana. Trust the comparisons and the

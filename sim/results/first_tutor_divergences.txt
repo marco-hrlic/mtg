@@ -1,0 +1,399 @@
+Games played: 2000; games reaching a first activation by T5: 1304 (65%)
+1304 first-activation states captured from 2000 games (policy A, seed 5, islands=0, on the play); 5 turns; lookahead rollouts=4
+First activation on turn: T2: 0%, T3: 35%, T4: 54%, T5: 11%
+
+ALL first-activation states  (n = 1304)
+  arm              n  lethal<=T3  lethal<=T4  lethal<=T5  prot<=T4  inf<=T4 Emiel line Ashaya line  utility
+  cradle        1162        0.0%       18.3%       67.6%      4.4%    18.3%       7.1%       60.6%    0.136
+  selvala       1171        0.0%       13.5%       64.6%      2.4%    13.5%      11.9%       52.7%    0.091
+  lookahead     1304        0.0%       25.8%       79.1%      6.7%    25.8%      11.0%       68.2%    0.196
+
+COHORT: both Cradle and Selvala still in the library  (n = 1041)
+  arm              n  lethal<=T3  lethal<=T4  lethal<=T5  prot<=T4  inf<=T4 Emiel line Ashaya line  utility
+  cradle        1041        0.0%       19.6%       67.8%      4.7%    19.6%       7.0%       60.8%    0.145
+  selvala       1041        0.0%       12.4%       63.3%      2.3%    12.4%      12.0%       51.3%    0.085
+  lookahead     1041        0.0%       26.2%       79.8%      6.8%    26.2%      10.4%       69.5%    0.199
+
+Paired differences on the cohort, P(lethal<=T4), mean [95% CI]
+  cradle      - selvala    : +7.2% [+5.1%, +9.3%]  n=1041
+  lookahead   - cradle     : +6.6% [+5.1%, +8.2%]  n=1041
+  cradle - selvala on lethal<=T5: +4.5% [+1.7%, +7.4%]
+
+Fetched-Cradle stranded (land drop already spent) / fetched-Selvala summoning sick, share of arm's states
+  cradle       stranded   0.0%   Selvala sick   0.0%
+  selvala      stranded   0.0%   Selvala sick 100.0%
+  lookahead    stranded   0.0%   Selvala sick  15.6%
+
+What `lookahead` fetched: Gaea's Cradle: 61%, Selvala, Heart of the Wilds: 16%, Ashaya, Soul of the Wild: 12%, Shang-Chi, Master of Kung Fu: 6%, Emiel the Blessed: 3%, Flash Thompson, Spider-Fan: 2%, Toph, the Blind Bandit: 1%, Kamahl, Fist of Krosa: 0%
+
+STRATIFIED cohort: P(lethal<=T4) by arm  [n]
+  land drop
+    unused   [1041]        19.6%        12.4%        26.2% 
+  creatures
+    0-2      [ 645]        27.6%        18.0%        37.2% 
+    3-4      [ 353]         7.4%         3.7%         9.3% 
+    5+       [  43]         0.0%         0.0%         0.0% 
+  max power
+    4        [   1]         0.0%         0.0%         0.0% 
+    5+       [   1]         0.0%         0.0%         0.0% 
+    <=3      [1039]        19.6%        12.4%        26.3% 
+  Emiel+Flash in hand/play
+    no       [1035]        19.6%        12.5%        26.3% 
+    yes      [   6]        16.7%         0.0%        16.7% 
+  Fanatic active
+    no       [1036]        19.7%        12.5%        26.4% 
+    yes      [   5]         0.0%         0.0%         0.0% 
+  Selvala could tap at once (haste src)
+    no       [1041]        19.6%        12.4%        26.2% 
+  Ashaya + Hope/Magus held
+    no       [1028]        19.3%        12.1%        26.0% 
+    yes      [  13]        46.2%        38.5%        46.2% 
+  white sources
+    0        [   3]        33.3%         0.0%        33.3% 
+    1        [ 203]        31.5%        24.6%        39.9% 
+    2+       [ 835]        16.6%         9.5%        22.9% 
+  independent Cradle tutor
+    no       [ 855]        21.1%        12.7%        27.0% 
+    yes      [ 186]        12.9%        10.8%        22.6% 
+  activation turn
+    T2       [   5]        20.0%        20.0%        40.0% 
+    T3       [ 378]        49.7%        33.3%        65.9% 
+    T4       [ 561]         2.7%         0.4%         3.9% 
+    T5       [  97]         0.0%         0.0%         0.0% 
+  columns: cradle      selvala    lookahead
+
+Primary T4 failure reason by arm (share of the arm's states without a T4 lethal)
+  reason                                cradle     selvala   lookahead
+  missing white                           4.2%        5.7%        5.2%
+  no engine (Ashaya/Emiel)               37.4%       46.0%       37.4%
+  no haste                                8.7%        5.6%        8.5%
+  no mana source (Cradle)                 0.4%        0.2%        3.2%
+  no untapper                            29.8%       27.0%       29.5%
+  pieces in hand, not castable           13.6%        3.9%        9.8%
+  short on mana                           5.8%       11.5%        6.4%
+
+====================================================================================================
+game 0: CRADLE wins T4, Selvala does not
+  T3, land drop unused, creatures 2, max power 2, white sources 1, hand 6
+  board: Brushland, Elvish Mystic, Boseiju, Who Endures, Captain Sisay
+  hand:  Ashaya, Soul of the Wild, Nykthos, Shrine to Nyx, Bloom Tender, Chord of Calling, Arbor Elf, Mana Vault
+  mana potential: Counter({'G': 2, 'A': 1})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Mana Vault
+    T3: cast Bloom Tender
+    T3: cast Ashaya, Soul of the Wild
+    T3: board: Brushland, Elvish Mystic, Boseiju, Who Endures, Captain Sisay, Gaea's Cradle, Mana Vault, Bloom Tender, Ashaya, Soul of the Wild
+    T4: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via Chord of Calling, - via battlefield, Shang-Chi, Master of Kung Fu via Sisay; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 7; protected: False
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Nykthos, Shrine to Nyx
+    T3: cast Mana Vault
+    T3: cast Bloom Tender
+    T3: cast Selvala, Heart of the Wilds
+    T3: board: Brushland, Elvish Mystic, Boseiju, Who Endures, Captain Sisay, Nykthos, Shrine to Nyx, Mana Vault, Bloom Tender, Selvala, Heart of the Wilds
+    T4: Sisay fetches Emiel the Blessed
+    T4: cast Delighted Halfling
+    T4: cast Emiel the Blessed
+    T4: cast Ashaya, Soul of the Wild
+    T4: board: Brushland, Elvish Mystic, Boseiju, Who Endures, Captain Sisay, Nykthos, Shrine to Nyx, Mana Vault, Bloom Tender, Selvala, Heart of the Wilds, Delighted Halfling, Emiel the Blessed, Ashaya, Soul of the Wild
+    T5: WIN with Ashaya+Hope+Nykthos: - via battlefield, Hope Tender via Chord of Calling, - via battlefield, Shang-Chi, Master of Kung Fu via Sisay; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 10; protected: False
+
+====================================================================================================
+game 13: CRADLE wins T4, Selvala does not
+  T3, land drop unused, creatures 2, max power 2, white sources 2, hand 6
+  board: Savannah, Utopia Sprawl, Fyndhorn Elves, Forest, Captain Sisay
+  hand:  Emerald Charm, Bloom Tender, Temple Garden, Branchloft Pathway, Badgermole Cub, Verdant Touch
+  mana potential: Counter({'A': 2, 'G': 2})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Bloom Tender
+    T3: cast Badgermole Cub
+    T3: board: Savannah, Utopia Sprawl, Fyndhorn Elves, Forest, Captain Sisay, Gaea's Cradle, Bloom Tender, Badgermole Cub
+    T4: WIN with Ashaya+Quirion+Bloom: Ashaya, Soul of the Wild via Sisay, Quirion Ranger via Formidable Speaker, - via battlefield; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 7; protected: False
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Temple Garden
+    T3: cast Bloom Tender
+    T3: cast Badgermole Cub
+    T3: board: Savannah, Utopia Sprawl, Fyndhorn Elves, Forest, Captain Sisay, Temple Garden, Bloom Tender, Badgermole Cub
+    T4: Sisay fetches Emiel the Blessed
+    T4: play Branchloft Pathway
+    T4: cast Emiel the Blessed
+    T4: cast Selvala, Heart of the Wilds
+    T4: board: Savannah, Utopia Sprawl, Fyndhorn Elves, Forest, Captain Sisay, Temple Garden, Bloom Tender, Badgermole Cub, Branchloft Pathway, Emiel the Blessed, Selvala, Heart of the Wilds
+    T5: WIN with Emiel+Flash+Selvala: - via battlefield, Flash Thompson, Spider-Fan via Sisay, - via battlefield; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 10; protected: False
+
+====================================================================================================
+game 43: CRADLE wins T4, Selvala does not
+  T3, land drop unused, creatures 1, max power 2, white sources 2, hand 7
+  board: Temple Garden, Mana Vault(T), City of Brass, Captain Sisay
+  hand:  Scryb Ranger, Sylvan Scrying, Hope Tender, Forest, Green Sun's Zenith, Grand Abolisher, Cavern of Souls
+  mana potential: Counter({'C': 3, 'A': 2})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Forest
+    T3: cast Hope Tender
+    T3: board: Temple Garden, Mana Vault, City of Brass, Captain Sisay, Forest, Hope Tender
+    T4: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via Sisay, - via battlefield, Gaea's Cradle via hand; finish: Green Sun's Zenith -> Kamahl, Fist of Krosa; attackers 5; protected: False
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Forest
+    T3: cast Hope Tender
+    T3: board: Temple Garden, Mana Vault, City of Brass, Captain Sisay, Forest, Hope Tender
+    T4: Sisay fetches Ashaya, Soul of the Wild
+    T4: play Cavern of Souls
+    T4: cast Selvala, Heart of the Wilds
+    T4: board: Temple Garden, Mana Vault, City of Brass, Captain Sisay, Forest, Hope Tender, Cavern of Souls, Selvala, Heart of the Wilds
+    T5: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via hand, - via battlefield, Gaea's Cradle via Sisay; finish: Green Sun's Zenith -> Kamahl, Fist of Krosa; attackers 7; protected: False
+
+====================================================================================================
+game 154: CRADLE wins T4, Selvala does not
+  T3, land drop unused, creatures 2, max power 2, white sources 2, hand 6
+  board: Savannah, Llanowar Elves, Ancient Tomb, Captain Sisay, Mox Amber
+  hand:  Yavimaya, Cradle of Growth, Emiel the Blessed, Finale of Devastation, Bountiful Promenade, Marsh Flats, Windswept Heath
+  mana potential: Counter({'A': 2, 'C': 2, 'G': 1})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Emiel the Blessed
+    T3: board: Savannah, Llanowar Elves, Ancient Tomb, Captain Sisay, Mox Amber, Gaea's Cradle, Emiel the Blessed
+    T4: WIN with Emiel+Flash+Cradle+Cub (land: Yavimaya, Cradle of Growth): - via battlefield, Flash Thompson, Spider-Fan via Sisay, - via battlefield, Badgermole Cub via Finale of Devastation; finish: Formidable Speaker -> Kamahl, Fist of Krosa; attackers 6; protected: False
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Marsh Flats, fetch Temple Garden
+    T3: cast Emiel the Blessed
+    T3: board: Savannah, Llanowar Elves, Ancient Tomb, Captain Sisay, Mox Amber, Temple Garden, Emiel the Blessed
+    T4: Sisay fetches Flash Thompson, Spider-Fan
+    T4: play Windswept Heath, fetch Forest
+    T4: cast Flash Thompson, Spider-Fan
+    T4: cast Selvala, Heart of the Wilds
+    T4: board: Savannah, Llanowar Elves, Ancient Tomb, Captain Sisay, Mox Amber, Temple Garden, Emiel the Blessed, Forest, Flash Thompson, Spider-Fan, Selvala, Heart of the Wilds
+    T5: WIN with Ashaya+Quirion+Selvala: Ashaya, Soul of the Wild via Sisay, Quirion Ranger via Finale of Devastation, - via battlefield; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 9; protected: False
+
+====================================================================================================
+game 156: CRADLE wins T4, Selvala does not
+  T3, land drop unused, creatures 2, max power 2, white sources 2, hand 4
+  board: Savannah, Chrome Mox, Utopia Sprawl, Mayor Tong of Chin Village, Talon Gates of Madara, Captain Sisay
+  hand:  Knight of the Reliquary, Ashaya, Soul of the Wild, Eladamri's Call, Cavern of Souls
+  mana potential: Counter({'A': 2, 'G': 1, 'C': 1})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Ashaya, Soul of the Wild
+    T3: cast Eladamri's Call
+    T3: Eladamri's Call -> Hope Tender
+    T3: board: Savannah, Chrome Mox, Utopia Sprawl, Mayor Tong of Chin Village, Talon Gates of Madara, Captain Sisay, Gaea's Cradle, Ashaya, Soul of the Wild
+    T4: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via hand, - via battlefield, Shang-Chi, Master of Kung Fu via Sisay; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 6; protected: False
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Cavern of Souls
+    T3: cast Ashaya, Soul of the Wild
+    T3: board: Savannah, Chrome Mox, Utopia Sprawl, Mayor Tong of Chin Village, Talon Gates of Madara, Captain Sisay, Cavern of Souls, Ashaya, Soul of the Wild
+    T4: Sisay fetches Emiel the Blessed
+    T4: play Forest
+    T4: cast Emiel the Blessed
+    T4: cast Selvala, Heart of the Wilds
+    T4: board: Savannah, Chrome Mox, Utopia Sprawl, Mayor Tong of Chin Village, Talon Gates of Madara, Captain Sisay, Cavern of Souls, Ashaya, Soul of the Wild, Forest, Emiel the Blessed, Selvala, Heart of the Wilds
+    T5: WIN with Ashaya+Hope+Selvala: - via battlefield, Hope Tender via Eladamri's Call, - via battlefield, Shang-Chi, Master of Kung Fu via Sisay; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 9; protected: False
+
+====================================================================================================
+game 210: CRADLE wins T4, Selvala does not
+  T3, land drop unused, creatures 2, max power 2, white sources 3, hand 6
+  board: Horizon Canopy, Avacyn's Pilgrim, Savannah, Captain Sisay
+  hand:  Ranger-Captain of Eos, Bountiful Promenade, Jennifer Walters, Thousand-Year Elixir, Knight of the Reliquary, Verdant Catacombs
+  mana potential: Counter({'A': 2, 'W': 1})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Thousand-Year Elixir
+    T3: cast Ranger-Captain of Eos
+    T3: Ranger-Captain finds Magus of the Candelabra
+    T3: board: Horizon Canopy, Avacyn's Pilgrim, Savannah, Captain Sisay, Gaea's Cradle, Thousand-Year Elixir, Ranger-Captain of Eos
+    T4: Sisay fetches Ashaya, Soul of the Wild
+    T4: play Verdant Catacombs, fetch Temple Garden
+    T4: cast Utopia Sprawl
+    T4: cast Ashaya, Soul of the Wild
+    T4: cast Magus of the Candelabra
+    T4: cast Knight of the Reliquary
+    T4: WIN with Ashaya+Magus+Cradle: - via battlefield, - via battlefield, - via battlefield; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 6; protected: True
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Verdant Catacombs, fetch Temple Garden
+    T3: cast Selvala, Heart of the Wilds
+    T3: board: Horizon Canopy, Avacyn's Pilgrim, Savannah, Captain Sisay, Temple Garden, Selvala, Heart of the Wilds
+    T4: Sisay fetches Emiel the Blessed
+    T4: play Bountiful Promenade
+    T4: cast Emiel the Blessed
+    T4: cast Thousand-Year Elixir
+    T4: board: Horizon Canopy, Avacyn's Pilgrim, Savannah, Captain Sisay, Temple Garden, Selvala, Heart of the Wilds, Bountiful Promenade, Emiel the Blessed, Thousand-Year Elixir
+    T5: Sisay fetches Flash Thompson, Spider-Fan
+    T5: play Flooded Strand, fetch Forest
+    T5: cast Flash Thompson, Spider-Fan
+    T5: cast Knight of the Reliquary
+    T5: cast Ranger-Captain of Eos
+    T5: Ranger-Captain finds Magus of the Candelabra
+    T5: cast Magus of the Candelabra
+    T5: WIN with Emiel+Flash+Cradle+Kamahl: - via battlefield, - via battlefield, Gaea's Cradle via Knight of the Reliquary, Kamahl, Fist of Krosa via hand; finish: Kamahl, Fist of Krosa in hand; attackers 8; protected: True
+
+====================================================================================================
+game 119: SELVALA wins T4, Cradle does not
+  T3, land drop unused, creatures 2, max power 2, white sources 2, hand 4
+  board: Savannah, Chrome Mox, Wild Growth, Llanowar Elves, Horizon Canopy, Captain Sisay
+  hand:  Bloom Tender, Marvin, Murderous Mimic, Badgermole Cub, Spectacular Spider-Man
+  mana potential: Counter({'G': 3, 'A': 2})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Bloom Tender
+    T3: cast Badgermole Cub
+    T3: cast Spectacular Spider-Man
+    T3: cast Marvin, Murderous Mimic
+    T3: board: Savannah, Chrome Mox, Wild Growth, Llanowar Elves, Horizon Canopy, Captain Sisay, Gaea's Cradle, Bloom Tender, Badgermole Cub, Spectacular Spider-Man, Marvin, Murderous Mimic
+    T4: Sisay fetches Ashaya, Soul of the Wild
+    T4: cast Ashaya, Soul of the Wild
+    T4: cast Voice of Victory
+    T4: board: Savannah, Chrome Mox, Wild Growth, Llanowar Elves, Horizon Canopy, Captain Sisay, Gaea's Cradle, Bloom Tender, Badgermole Cub, Spectacular Spider-Man, Marvin, Murderous Mimic, Ashaya, Soul of the Wild, Voice of Victory
+    T5: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via Green Sun's Zenith, - via battlefield, Shang-Chi, Master of Kung Fu via Sisay; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 11; protected: True
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: cast Bloom Tender
+    T3: cast Badgermole Cub
+    T3: board: Savannah, Chrome Mox, Wild Growth, Llanowar Elves, Horizon Canopy, Captain Sisay, Bloom Tender, Badgermole Cub
+    T4: WIN with Ashaya+Quirion+Bloom: Ashaya, Soul of the Wild via Sisay, Quirion Ranger via Eldritch Evolution, - via battlefield; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 6; protected: False
+
+====================================================================================================
+game 137: SELVALA wins T4, Cradle does not
+  T3, land drop unused, creatures 2, max power 2, white sources 2, hand 5
+  board: Savannah, Wild Growth, Avacyn's Pilgrim, Yavimaya, Cradle of Growth, Sol Ring, Captain Sisay
+  hand:  Emerald Charm, Flash Thompson, Spider-Fan, Horizon Canopy, Formidable Speaker, Thousand-Year Elixir
+  mana potential: Counter({'G': 2, 'C': 2, 'A': 1, 'W': 1})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Thousand-Year Elixir
+    T3: cast Formidable Speaker
+    T3: Formidable Speaker discards Emerald Charm, finds Ashaya, Soul of the Wild
+    T3: cast Flash Thompson, Spider-Fan
+    T3: board: Savannah, Wild Growth, Avacyn's Pilgrim, Yavimaya, Cradle of Growth, Sol Ring, Captain Sisay, Gaea's Cradle, Thousand-Year Elixir, Formidable Speaker, Flash Thompson, Spider-Fan
+    T4: Sisay fetches Nykthos, Shrine to Nyx
+    T4: play Nykthos, Shrine to Nyx
+    T4: cast Ashaya, Soul of the Wild
+    T4: board: Savannah, Wild Growth, Avacyn's Pilgrim, Yavimaya, Cradle of Growth, Sol Ring, Captain Sisay, Gaea's Cradle, Thousand-Year Elixir, Formidable Speaker, Flash Thompson, Spider-Fan, Nykthos, Shrine to Nyx, Ashaya, Soul of the Wild
+    T5: Sisay fetches Selvala, Heart of the Wilds
+    T5: play Horizon Canopy
+    T5: cast Selvala, Heart of the Wilds
+    T5: board: Savannah, Wild Growth, Avacyn's Pilgrim, Yavimaya, Cradle of Growth, Sol Ring, Captain Sisay, Gaea's Cradle, Thousand-Year Elixir, Formidable Speaker, Flash Thompson, Spider-Fan, Nykthos, Shrine to Nyx, Ashaya, Soul of the Wild, Horizon Canopy, Selvala, Heart of the Wilds
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Horizon Canopy
+    T3: cast Selvala, Heart of the Wilds
+    T3: cast Thousand-Year Elixir
+    T3: cast Flash Thompson, Spider-Fan
+    T3: board: Savannah, Wild Growth, Avacyn's Pilgrim, Yavimaya, Cradle of Growth, Sol Ring, Captain Sisay, Horizon Canopy, Selvala, Heart of the Wilds, Thousand-Year Elixir, Flash Thompson, Spider-Fan
+    T4: WIN with Emiel+Flash+Arbor Elf+Cradle: Emiel the Blessed via Formidable Speaker, - via battlefield, Arbor Elf via hand, Gaea's Cradle via Sisay, - via battlefield; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 7; protected: False
+
+====================================================================================================
+game 158: SELVALA wins T4, Cradle does not
+  T3, land drop unused, creatures 1, max power 2, white sources 2, hand 6
+  board: Savannah, Utopia Sprawl, Wild Growth, Boseiju, Who Endures, Captain Sisay
+  hand:  Finale of Devastation, Eldritch Evolution, Crop Rotation, Voice of Victory, Forest, Temple Garden
+  mana potential: Counter({'A': 2, 'G': 2})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Forest
+    T3: cast Voice of Victory
+    T3: board: Savannah, Utopia Sprawl, Wild Growth, Boseiju, Who Endures, Captain Sisay, Forest, Voice of Victory
+    T4: Sisay fetches Ashaya, Soul of the Wild
+    T4: play Gaea's Cradle
+    T4: cast Mox Diamond
+    T4: cast Ashaya, Soul of the Wild
+    T4: cast Eldritch Evolution
+    T4: Eldritch Evolution (sac Voice of Victory) -> Hope Tender
+    T4: board: Savannah, Utopia Sprawl, Wild Growth, Boseiju, Who Endures, Captain Sisay, Forest, Gaea's Cradle, Mox Diamond, Ashaya, Soul of the Wild, Hope Tender
+    T5: WIN with Ashaya+Hope+Cradle: - via battlefield, - via battlefield, - via battlefield; finish: Finale of Devastation in hand; attackers 7; protected: False
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Forest
+    T3: cast Selvala, Heart of the Wilds
+    T3: cast Voice of Victory
+    T3: board: Savannah, Utopia Sprawl, Wild Growth, Boseiju, Who Endures, Captain Sisay, Forest, Selvala, Heart of the Wilds, Voice of Victory
+    T4: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via Eldritch Evolution, Hope Tender via Finale of Devastation, Gaea's Cradle via Crop Rotation, Shang-Chi, Master of Kung Fu via Sisay; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 6; protected: True
+
+====================================================================================================
+game 211: SELVALA wins T4, Cradle does not
+  T3, land drop unused, creatures 2, max power 2, white sources 4, hand 6
+  board: Savannah, Utopia Sprawl, Birds of Paradise, Temple Garden, Captain Sisay
+  hand:  Eladamri's Call, Vitalize, Gemstone Caverns, Sylvan Scrying, Eiganjo, Seat of the Empire, Summoner's Pact
+  mana potential: Counter({'A': 4})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Eladamri's Call
+    T3: Eladamri's Call -> Ashaya, Soul of the Wild
+    T3: board: Savannah, Utopia Sprawl, Birds of Paradise, Temple Garden, Captain Sisay, Gaea's Cradle
+    T4: Sisay fetches Nykthos, Shrine to Nyx
+    T4: play Gemstone Caverns
+    T4: cast Fyndhorn Elves
+    T4: cast Ashaya, Soul of the Wild
+    T4: board: Savannah, Utopia Sprawl, Birds of Paradise, Temple Garden, Captain Sisay, Gaea's Cradle, Gemstone Caverns, Fyndhorn Elves, Ashaya, Soul of the Wild
+    T5: WIN with Ashaya+Hope+Cradle: - via battlefield, Hope Tender via Summoner's Pact, - via battlefield, Shang-Chi, Master of Kung Fu via Sisay; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 8; protected: False
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Gemstone Caverns
+    T3: cast Selvala, Heart of the Wilds
+    T3: board: Savannah, Utopia Sprawl, Birds of Paradise, Temple Garden, Captain Sisay, Gemstone Caverns, Selvala, Heart of the Wilds
+    T4: WIN with Ashaya+Quirion+Selvala (land: Eiganjo, Seat of the Empire): Ashaya, Soul of the Wild via Sisay, Quirion Ranger via Summoner's Pact, - via battlefield; finish: Eladamri's Call -> Kamahl, Fist of Krosa; burst: Vitalize; attackers 6; protected: False
+
+====================================================================================================
+game 212: SELVALA wins T4, Cradle does not
+  T3, land drop unused, creatures 2, max power 2, white sources 2, hand 5
+  board: Savannah, Elvish Mystic, Branchloft Pathway, Chrome Mox, Captain Sisay
+  hand:  Bountiful Promenade, Scryb Ranger, Eldritch Evolution, Brushland, Boromir, Warden of the Tower
+  mana potential: Counter({'G': 2, 'A': 1, 'W': 1})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Scryb Ranger
+    T3: cast Boromir, Warden of the Tower
+    T3: board: Savannah, Elvish Mystic, Branchloft Pathway, Chrome Mox, Captain Sisay, Gaea's Cradle, Scryb Ranger, Boromir, Warden of the Tower
+    T4: Sisay fetches Ashaya, Soul of the Wild
+    T4: play Ancient Tomb
+    T4: cast Ashaya, Soul of the Wild
+    T4: cast Eldritch Evolution
+    T4: Eldritch Evolution (sac Elvish Mystic) -> Hope Tender
+    T4: board: Savannah, Branchloft Pathway, Chrome Mox, Captain Sisay, Gaea's Cradle, Scryb Ranger, Boromir, Warden of the Tower, Ancient Tomb, Ashaya, Soul of the Wild, Hope Tender
+    T5: WIN with Ashaya+Hope+Cradle: - via battlefield, - via battlefield, - via battlefield; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 9; protected: True
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play Bountiful Promenade
+    T3: cast Scryb Ranger
+    T3: cast Selvala, Heart of the Wilds
+    T3: board: Savannah, Elvish Mystic, Branchloft Pathway, Chrome Mox, Captain Sisay, Bountiful Promenade, Scryb Ranger, Selvala, Heart of the Wilds
+    T4: WIN with Ashaya+Scryb+Selvala (land: Ancient Tomb): Ashaya, Soul of the Wild via Sisay, - via battlefield, - via battlefield; finish: Eldritch Evolution -> Kamahl, Fist of Krosa; attackers 7; protected: False
+
+====================================================================================================
+game 323: SELVALA wins T4, Cradle does not
+  T3, land drop unused, creatures 2, max power 2, white sources 2, hand 6
+  board: Savannah, Llanowar Elves, Temple Garden, Captain Sisay
+  hand:  Lightning Greaves, City of Brass, Brushland, Eldritch Evolution, Finale of Devastation, Spectacular Spider-Man
+  mana potential: Counter({'A': 2, 'G': 1})
+  --- cradle:
+    T3: Sisay fetches Gaea's Cradle
+    T3: play Gaea's Cradle
+    T3: cast Spectacular Spider-Man
+    T3: cast Lightning Greaves
+    T3: board: Savannah, Llanowar Elves, Temple Garden, Captain Sisay, Gaea's Cradle, Spectacular Spider-Man, Lightning Greaves
+    T4: Sisay fetches Emiel the Blessed
+    T4: play City of Brass
+    T4: cast Fanatic of Rhonas
+    T4: board: Savannah, Llanowar Elves, Temple Garden, Captain Sisay, Gaea's Cradle, Spectacular Spider-Man, Lightning Greaves, City of Brass, Fanatic of Rhonas
+    T5: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via Eldritch Evolution, Hope Tender via Finale of Devastation, - via battlefield, - via battlefield; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 8; protected: False
+  --- selvala:
+    T3: Sisay fetches Selvala, Heart of the Wilds
+    T3: play City of Brass
+    T3: cast Selvala, Heart of the Wilds
+    T3: board: Savannah, Llanowar Elves, Temple Garden, Captain Sisay, City of Brass, Selvala, Heart of the Wilds
+    T4: WIN with Ashaya+Hope+Cradle: Ashaya, Soul of the Wild via Eldritch Evolution, Hope Tender via Finale of Devastation, Gaea's Cradle via Sisay, Lightning Greaves via hand; finish: loop untaps Sisay -> Kamahl, Fist of Krosa; attackers 6; protected: False

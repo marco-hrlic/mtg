@@ -1,0 +1,93 @@
+Games played: 5000; games reaching a first activation by T5: 3195 (64%)
+3195 first-activation states captured from 5000 games (policy A, seed 1, islands=0, on the play); 5 turns; lookahead rollouts=4
+First activation on turn: T2: 1%, T3: 33%, T4: 53%, T5: 13%
+
+ALL first-activation states  (n = 3195)
+  arm              n  lethal<=T3  lethal<=T4  lethal<=T5  prot<=T4  inf<=T4 Emiel line Ashaya line  utility
+  current       3195        0.1%       17.8%       68.1%      1.8%    17.8%       9.5%       58.5%    0.107
+  cradle        2869        0.1%       18.5%       65.7%      3.9%    18.5%       7.2%       58.5%    0.132
+  selvala       2801        0.0%       12.5%       63.0%      1.3%    12.5%      10.2%       52.8%    0.076
+  contextual    3195        0.1%       17.8%       65.0%      3.8%    17.8%       7.1%       57.9%    0.127
+  rule2         3195        0.2%       19.2%       68.6%      3.1%    19.2%       5.4%       63.2%    0.127
+  lookahead     3195        0.1%       24.7%       78.5%      5.5%    24.7%      11.2%       67.4%    0.178
+
+COHORT: both Cradle and Selvala still in the library  (n = 2510)
+  arm              n  lethal<=T3  lethal<=T4  lethal<=T5  prot<=T4  inf<=T4 Emiel line Ashaya line  utility
+  current       2510        0.1%       19.7%       69.2%      2.0%    19.7%       7.2%       62.1%    0.119
+  cradle        2510        0.1%       19.2%       65.9%      4.1%    19.2%       7.0%       58.9%    0.136
+  selvala       2510        0.0%       12.1%       62.4%      1.2%    12.1%      10.6%       51.8%    0.072
+  contextual    2510        0.1%       19.2%       65.9%      4.1%    19.2%       7.0%       58.9%    0.136
+  rule2         2510        0.2%       20.8%       69.4%      3.3%    20.8%       4.4%       65.0%    0.137
+  lookahead     2510        0.1%       26.3%       79.0%      5.7%    26.3%      10.5%       68.5%    0.189
+
+Paired differences on the cohort, P(lethal<=T4), mean [95% CI]
+  cradle      - selvala    : +7.1% [+5.7%, +8.5%]  n=2510
+  contextual  - cradle     : +0.0% [+0.0%, +0.0%]  n=2510
+  rule2       - cradle     : +1.7% [+0.6%, +2.7%]  n=2510
+  rule2       - current    : +1.1% [+0.3%, +1.9%]  n=2510
+  lookahead   - cradle     : +7.2% [+6.1%, +8.3%]  n=2510
+  lookahead   - rule2      : +5.5% [+4.5%, +6.5%]  n=2510
+  current     - cradle     : +0.6% [-0.7%, +1.8%]  n=2510
+  cradle - selvala on lethal<=T5: +3.5% [+1.7%, +5.4%]
+
+Fetched-Cradle stranded (land drop already spent) / fetched-Selvala summoning sick, share of arm's states
+  current      stranded   0.0%   Selvala sick   9.2%
+  cradle       stranded   0.0%   Selvala sick   0.0%
+  selvala      stranded   0.0%   Selvala sick 100.0%
+  contextual   stranded   0.0%   Selvala sick   0.0%
+  rule2        stranded   0.0%   Selvala sick   2.0%
+  lookahead    stranded   0.0%   Selvala sick  14.6%
+
+What `current` fetched: Ashaya, Soul of the Wild: 61%, Emiel the Blessed: 14%, Gaea's Cradle: 11%, Selvala, Heart of the Wilds: 9%, Flash Thompson, Spider-Fan: 3%, Nykthos, Shrine to Nyx: 1%
+
+What `contextual` fetched: Gaea's Cradle: 90%, Kamahl, Fist of Krosa: 7%, Ashaya, Soul of the Wild: 3%, Nykthos, Shrine to Nyx: 0%, Selvala, Heart of the Wilds: 0%
+
+What `rule2` fetched: Ashaya, Soul of the Wild: 52%, Gaea's Cradle: 46%, Selvala, Heart of the Wilds: 2%, Kamahl, Fist of Krosa: 0%
+
+What `lookahead` fetched: Gaea's Cradle: 62%, Selvala, Heart of the Wilds: 15%, Ashaya, Soul of the Wild: 12%, Shang-Chi, Master of Kung Fu: 7%, Emiel the Blessed: 3%, Toph, the Blind Bandit: 1%, Flash Thompson, Spider-Fan: 1%, Kamahl, Fist of Krosa: 0%
+
+STRATIFIED cohort: P(lethal<=T4) by arm  [n]
+  land drop
+    unused   [2510]        19.7%        19.2%        12.1%        19.2%        20.8%        26.3% 
+  creatures
+    0-2      [1457]        29.2%        28.8%        18.3%        28.8%        31.2%        38.6% 
+    3-4      [ 951]         7.3%         6.4%         3.9%         6.4%         7.2%        10.4% 
+    5+       [ 102]         0.0%         0.0%         0.0%         0.0%         0.0%         0.0% 
+  max power
+    4        [   2]         0.0%         0.0%         0.0%         0.0%         0.0%         0.0% 
+    5+       [   1]         0.0%         0.0%         0.0%         0.0%         0.0%         0.0% 
+    <=3      [2507]        19.7%        19.2%        12.1%        19.2%        20.9%        26.4% 
+  Emiel+Flash in hand/play
+    no       [2491]        19.7%        19.0%        12.0%        19.0%        20.7%        26.3% 
+    yes      [  19]        21.1%        36.8%        21.1%        36.8%        36.8%        36.8% 
+  Fanatic active
+    no       [2495]        19.8%        19.2%        12.1%        19.2%        20.9%        26.3% 
+    yes      [  15]         6.7%        20.0%         6.7%        20.0%         6.7%        26.7% 
+  Selvala could tap at once (haste src)
+    no       [2510]        19.7%        19.2%        12.1%        19.2%        20.8%        26.3% 
+  Ashaya + Hope/Magus held
+    no       [2469]        19.7%        19.2%        12.0%        19.2%        20.9%        26.4% 
+    yes      [  41]        19.5%        19.5%        14.6%        19.5%        19.5%        22.0% 
+  white sources
+    0        [   6]         0.0%        33.3%         0.0%        33.3%        16.7%        33.3% 
+    1        [ 489]        24.9%        26.8%        17.6%        26.8%        27.4%        34.6% 
+    2+       [2015]        18.5%        17.3%        10.8%        17.3%        19.3%        24.3% 
+  independent Cradle tutor
+    no       [2068]        20.5%        20.1%        12.1%        20.1%        22.0%        27.0% 
+    yes      [ 442]        16.1%        14.9%        11.8%        14.9%        15.6%        23.1% 
+  activation turn
+    T2       [  17]        52.9%        64.7%        35.3%        64.7%        58.8%        64.7% 
+    T3       [ 901]        51.2%        49.4%        32.7%        49.4%        54.6%        66.7% 
+    T4       [1303]         1.9%         1.9%         0.2%         1.9%         1.6%         3.8% 
+    T5       [ 289]         0.0%         0.0%         0.0%         0.0%         0.0%         0.0% 
+  columns: current       cradle      selvala   contextual        rule2    lookahead
+
+Primary T4 failure reason by arm (share of the arm's states without a T4 lethal)
+  reason                               current      cradle     selvala  contextual       rule2   lookahead
+  missing white                          10.6%        4.4%        5.7%        4.3%        4.7%        4.8%
+  no engine (Ashaya/Emiel)                9.6%       40.4%       47.3%       39.1%       23.3%       41.1%
+  no haste                               13.4%        8.8%        6.3%        8.9%        9.6%        8.7%
+  no mana source (Cradle)                13.7%        1.1%        1.1%        1.0%        5.1%        3.6%
+  no untapper                            30.1%       26.9%       23.6%       27.6%       36.7%       26.3%
+  pieces in hand, not castable            8.8%       14.6%        3.3%       14.9%       15.1%        9.6%
+  short on mana                          13.9%        3.8%       12.6%        4.2%        5.5%        5.9%

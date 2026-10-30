@@ -5,7 +5,7 @@ import sys
 from collections import Counter, defaultdict
 
 rows = json.load(open(sys.argv[1]))
-ARMS = ("current", "cradle", "selvala", "contextual", "lookahead")
+ARMS = ("current", "cradle", "selvala", "contextual", "rule2", "lookahead")
 
 
 def l4(x):
